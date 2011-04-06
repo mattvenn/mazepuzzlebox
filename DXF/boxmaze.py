@@ -1,8 +1,14 @@
 # thanks to kellbot for info on the sdxf library: http://www.kellbot.com/sdxf-python-library-for-dxf/
 import sdxf
+import sys
 dxfdir="processDXF/"
 # globals
-thickness = 3.72 #thickness of material
+if len(sys.argv) != 2:
+    print "give thickness on the command line"
+    sys.exit(1)
+thickness = float(sys.argv[1]) #3.72 #thickness of material
+
+print "using thickness", thickness, "mm"
 laserBurnGap = 0.3 #depends on laser cutter
 boxWidth = 100
 boxLength = 140
@@ -13,9 +19,9 @@ patternColor = 3
 
 def drawRef():
     linePoints = [(-2,0),(2,0)]
-    d.append(sdxf.Line(points=linePoints,color=cutColor)) #flag=1 means close the polyline
+    d.append(sdxf.Line(points=linePoints,color=cutColor)) 
     linePoints = [(0,-2),(0,2)]
-    d.append(sdxf.Line(points=linePoints,color=cutColor)) #flag=1 means close the polyline
+    d.append(sdxf.Line(points=linePoints,color=cutColor))
 
 def drawHinge(x,y):
     d.append(sdxf.Circle(center=(x+10,y+thickness * 5.5),radius=2,color=cutColor))
@@ -63,7 +69,7 @@ def drawCatchSlot2(x,y):
     #d.append(sdxf.Line(points=linePoints,color=cutColor)) 
 
 d=sdxf.Drawing()
-drawRef()
+#drawRef()
 drawHinge(200,40)
 drawHinge(225,40)
 drawCatch(60,40)
@@ -75,5 +81,4 @@ for col in range(2):
             drawHingeSlotLid(boxLength*col,boxWidth*row)
         else:
             drawHingeSlot(boxLength*col,boxWidth*row)
-
 d.saveas(dxfdir+'boxmaze.dxf')
