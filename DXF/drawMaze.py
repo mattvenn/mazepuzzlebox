@@ -1,11 +1,9 @@
 import json
 import simplejson as json
 import sdxf
+import math
 
-cutColor = 0
-etchColor = 2
-patternColor = 3
-
+dxfdir="processDXF/"
 passageWidth = 5
 xCells = 13;
 yCells = 6;
@@ -45,12 +43,24 @@ class Cell():
 
 #functions for drawing
 def endShape():
-    global linePoints
+    global linePoints,drawColor
     #import pdb; pdb.set_trace()
-    d.append(sdxf.LwPolyLine(points=linePoints,flag=1,color=cutColor)) 
+    d.append(sdxf.LwPolyLine(points=linePoints,flag=1,color=drawColor)) 
     linePoints = []
 
 def vertex(x,y):
+    #mirror
+    y = 0 - y
+    #rotate; thanks http://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations
+    angle = math.pi / 2
+    rotX = x * math.cos(angle) - y * math.sin(angle)
+    rotY = x * math.sin(angle) + y * math.cos(angle)
+    x = rotX
+    y = rotY
+    #translate
+    global transX, transY
+    x = x+transX
+    y = y+transY
     linePoints.append([x,y])
 
 def drawLines(x,y, dir, lineStarted):
@@ -76,6 +86,30 @@ def drawVertex( dir, x,y ):
     if dir == "BOTTOM":
         vertex(x*passageWidth,y*passageWidth+passageWidth)
 
+def drawMaze():
+    lineStarted = False
+    for dir in range(2):
+        for x in range(xCells):
+            for y in range(yCells):
+                lineStarted = drawLines(x,y,dirs[dir],lineStarted);
+
+            if lineStarted:
+                lineStarted = False
+                drawVertex(dirs[dir],x,yCells)
+                endShape()
+
+    # top and bottom lines are missing when we hit the wall on the right
+    for dir in range(2,4):
+        for y in range(yCells):
+            for x in range(xCells):
+                lineStarted = drawLines(x,y,dirs[dir],lineStarted)
+
+            if lineStarted:
+                lineStarted = False
+                drawVertex(dirs[dir],xCells,y)
+                endShape()
+
+
 
 ##main start
 #prep drawing
@@ -85,30 +119,14 @@ d=sdxf.Drawing()
 matrix = json.loads( jstr )
 maze = [[Cell(x,y,matrix[x][y]) for y in range(yCells)] for x in range(xCells)]
 
-lineStarted = False
 dirs = [ "LEFT", "RIGHT", "TOP", "BOTTOM" ]
 linePoints = []
-
-for dir in range(2):
-    for x in range(xCells):
-        for y in range(yCells):
-            lineStarted = drawLines(x,y,dirs[dir],lineStarted);
-
-        if lineStarted:
-            lineStarted = False
-            drawVertex(dirs[dir],x,yCells)
-            endShape()
-
-# top and bottom lines are missing when we hit the wall on the right
-for dir in range(2,4):
-    for y in range(yCells):
-        for x in range(xCells):
-            lineStarted = drawLines(x,y,dirs[dir],lineStarted)
-
-        if lineStarted:
-            lineStarted = False
-            drawVertex(dirs[dir],xCells,y)
-            endShape()
-
-d.saveas('/tmp/boxmaze.dxf')
-
+transX = 10
+transY = 125
+drawColor = 0
+drawMaze()
+drawColor = 3
+transX = 10 + 140
+transY = 125 + 100
+drawMaze()
+d.saveas(dxfdir+'maze.dxf')

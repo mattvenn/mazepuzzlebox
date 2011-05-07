@@ -8,7 +8,7 @@ header = headerFile.read()
 footerFile = open(staticdxfdir + "footer.dxf", "r")
 footer = footerFile.read()
 
-FILES = [ "boxmaze.dxf" , "maze.dxf", "etchmazecolour.dxf", "boxmazeoutline.dxf" ]
+FILES = [ "boxmaze.dxf" , "maze.dxf", "boxmazeoutline.dxf" ]
 entities = ""
 for file in FILES:
     filename = dxfdir + file
