@@ -1,7 +1,13 @@
 import re
+import sys
 dxfdir = "processDXF/"
 staticdxfdir = "staticDXF/"
 outdir="outputDXF/"
+
+if len(sys.argv) != 2:
+    print "give id on the command line"
+    sys.exit(1)
+boxid = sys.argv[1]
 
 headerFile = open(staticdxfdir + "header.dxf", "r")
 header = headerFile.read()
@@ -29,7 +35,7 @@ for file in FILES:
         if m != None:
             capture = True
 
-final = open( outdir + "boxmazefinal.dxf", "w" )
+final = open( outdir + "/boxmaze_" + boxid + ".dxf", "w" )
 final.write(header)
 final.write(entities)
 final.write(footer)

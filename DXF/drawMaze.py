@@ -2,12 +2,19 @@ import json
 import simplejson as json
 import sdxf
 import math
+import sys
 
 dxfdir="processDXF/"
 passageWidth = 5
-xCells = 13;
-yCells = 6;
-jstr = '[[1,1,1,1,0,0],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,0,0,1,1,1],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,0,0,1,1,1],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,1,1,1,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]'
+xCells = 13
+yCells = 6
+
+if len(sys.argv) != 2:
+    print "give json on the command line"
+    sys.exit(1)
+jstr = sys.argv[1]
+
+#jstr = '[[1,1,1,1,0,0],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,0,0,1,1,1],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,0,0,1,1,1],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,1,1,1,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]'
 
 
 
@@ -126,7 +133,7 @@ transY = 125
 drawColor = 0
 drawMaze()
 drawColor = 3
-transX = 10 + 140
-transY = 125 + 100
+transX = 150
+transY = 225
 drawMaze()
 d.saveas(dxfdir+'maze.dxf')

@@ -1,7 +1,11 @@
 #!/bin/bash
+cd ~/work/python/mazepuzzlebox/DXF/
 rm processDXF/*
 cp ~/work/lasercuts/boxmaze\ param\ v1-3.dxf processDXF/boxmazeoutline.dxf
-python boxmaze.py 3.72
-python drawMaze.py
-python joinDXF.py
+#give thickness
+python boxmaze.py $2
+#give json
+python drawMaze.py $3
+#give id
+python joinDXF.py $1
 
