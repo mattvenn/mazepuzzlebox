@@ -81,4 +81,4 @@ for col in range(2):
             drawHingeSlotLid(boxLength*col,boxWidth*row)
         else:
             drawHingeSlot(boxLength*col,boxWidth*row)
-d.saveas(dxfdir+'boxmaze.dxf')
+d.saveas(dxfdir+'pieces.dxf')
