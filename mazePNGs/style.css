@@ -1,0 +1,27 @@
+body { 
+  background:#FFF; 
+  padding:10px;
+  font-family: sans-serif;
+}
+
+#footer
+{
+   font-size:10pt;
+   font-style:normal;
+}
+
+#header
+{
+   font-size:14pt;
+   font-style:normal;
+   font-weight:bold;
+}
+
+#error
+{
+   color: red;
+   font-size:14pt;
+   font-style:normal;
+   font-weight:bold;
+}
+
