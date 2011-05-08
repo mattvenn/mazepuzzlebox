@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}box details{% endblock %}
+{% block content %}
+{% if box %}
+<p> id: {{ box.id }} </p>
+<p> date created: {{ box.pub_date }} </p>
+<!-- <p> json maze {{ box.maze }} </p> -->
+<img src="/mazePNGs/{{ box.id }}.png">
+{% endif %}
+
+<p>To download plans for this box, enter your material thickness in mm</p>
+<form action="/{{ box.id }}" method="post">
+{% csrf_token %}
+    <input type="text" name="thickness" />
+    <input type="submit" value="generate plans" />
+</form>
+
+{% if plans %}
+<p> download : <a href="{{ plans }}">plans for material thickness {{thickness}}mm</a></p>
+{% endif %}
+{% endblock %}

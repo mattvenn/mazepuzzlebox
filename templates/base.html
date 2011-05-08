@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="/mazePNGs/style.css" />
+    <title>{% block title %}maze puzzle box{% endblock %}</title>
+</head>
+<body>
+    <div id="header">
+    <a href="/">MazePuzzleBox.com</a>
+    </div>
+    <hr>
+        {% if error_message %}
+            <div id="error">Error: {{ error_message }}</div>
+        {% endif %}
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+    <hr>
+    <div id="footer">
+        {% block footer %}
+            <a href="/">Home</a> | <a href="/create">Create</a>
+        {% endblock %}
+    </div>
+</body>
+</html>

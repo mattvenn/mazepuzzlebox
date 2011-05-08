@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}index of boxes{% endblock %}
+{% block content %}
+
+{% if latest_box_list %}
+    <p> latest boxes </p>
+    <ul>
+    {% for box in latest_box_list %}
+        <li><a href="/{{ box.id }}">{{box.id}} : {{ box.pub_date }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No boxes are available.</p>
+
+{% endif %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}create a box{% endblock %}
+{% block content %}
+<form action="/create" method="post">
+{% csrf_token %}
+
+    <input type="text" name="maze" />
+    <input type="submit" value="create box" />
+
+</form>
+{% if box %}
+<p> created a new box with id {{ box.id }} </p>
+{% endif %}
+{% endblock %}
