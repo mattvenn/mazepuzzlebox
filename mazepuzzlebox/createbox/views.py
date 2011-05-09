@@ -8,6 +8,7 @@ from pytz import timezone
 
 from createbox.models import Box
 from createbox.drawMaze import drawMaze, checkJSON
+import logging
 
 def index(request):
     latest_box_list = Box.objects.all().order_by('-pub_date')[:5]
@@ -17,30 +18,37 @@ def details(request, id):
     try:
         box = Box.objects.get(pk=id)
     except Box.DoesNotExist:
+        logging.warn( "no such box id %s" % id )
         raise Http404
     
     try:
         thickness = request.POST['thickness']
     except:
-        return render_to_response('detail.html', {'box': box},  
-            context_instance=RequestContext(request))
+        return render_to_response('detail.html', {'box': box}, context_instance=RequestContext(request))
 
     #validate thickness
     try:
         float(thickness)
     except ValueError:
-        return render_to_response('detail.html', { 'box':box,
-                'error_message': "'%s' isn't a number" % thickness,
-            }, context_instance=RequestContext(request))
+        err_msg = "'%s' isn't a number" % thickness
+        logging.warn(err_msg)
+        return render_to_response('detail.html', { 'box':box, 'error_message': err_msg, }, context_instance=RequestContext(request))
     if float(thickness) > 8 or float(thickness) < 3:
-        return render_to_response('detail.html', { 'box':box,
-                'error_message': "thickness needs to be between 3 and 8mm",
-            }, context_instance=RequestContext(request))
+        err_msg = "thickness needs to be between 3 and 8mm"
+        logging.warn(err_msg)
+        return render_to_response('detail.html', { 'box':box, 'error_message': err_msg, }, context_instance=RequestContext(request))
 
     #generate the DXF
     from subprocess import call
     buildcommand = "/home/matthew/work/python/mazepuzzlebox/DXF/buildall.sh"
-    call([buildcommand,str(box.id),thickness,box.maze])
+    logging.debug( "building DXF" )
+    retcode = call([buildcommand,str(box.id),thickness,box.maze])
+    if retcode != 0:
+        logging.debug( "got return code %i" % retcode )
+        err_msg = "problem with rendering DXF for id %s thickness %s maze %s" % ( box.id, thickness, box.maze )
+        logging.error(err_msg)
+        return render_to_response('detail.html', { 'box':box, 'error_message': err_msg, }, context_instance=RequestContext(request))
+
     link = "/boxes/boxmaze_%i.dxf" % box.id
     return render_to_response('detail.html', {'box': box, 'plans' : link, 'thickness' : thickness },
         context_instance=RequestContext(request))
@@ -57,7 +65,9 @@ def create(request ):
     try:
         checkJSON(mazeJSON)
     except Exception as e:
-        return render_to_response('create.html', { 'error_message': "bad json: %s" % e },
+        err_msg = "bad json: %s" % e
+        logging.warn(err_msg)
+        return render_to_response('create.html', { 'error_message': err_msg },
             context_instance=RequestContext(request))
 
     box = Box(pub_date=datetime.datetime.now(timezone('GMT')),maze=mazeJSON)
@@ -67,6 +77,4 @@ def create(request ):
     # Always return an HttpResponseRedirect after successfully dealing
     # with POST data. This prevents data from being posted twice if a
     # user hits the Back button.
-#    return render_to_response('index.html', { 'latest_box_list': latest_box_list, })
-    #return render_to_response('detail.html', {'box': box} )
     return HttpResponseRedirect(reverse('createbox.views.details', args=(box.id,)))
