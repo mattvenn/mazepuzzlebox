@@ -1,10 +1,10 @@
 """
 draws the maze for the website
 """
-from PIL import Image
-import ImageDraw
+from PIL import Image, ImageDraw
 import json
 import simplejson as json
+from django.conf import settings
 
 xCells = 13
 yCells = 6
@@ -42,7 +42,7 @@ def drawMaze( jstr, id ):
     draw.ellipse( startCell, fill =( 255,0,0 ))
     #draw ending square
     draw.rectangle( endCell, fill = (255,0,0 ))
-    path = "/home/matthew/work/python/mazepuzzlebox/mazePNGs/"
+    path = settings.ROOT_DIR + "mazePNGs/"
     img_path = path + str(id) + ".png"
     img.save(img_path)
 

@@ -2,7 +2,7 @@
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-
+ROOT_DIR = "/home/matthew/work/python/mazepuzzlebox/"
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
@@ -12,7 +12,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'mpb.db',                      # Or path to database file if using sqlite3.
+        'NAME': ROOT_DIR + 'mazepuzzlebox/mpb.db',                      # Or path to database file if using sqlite3.
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -78,7 +78,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'mazepuzzlebox.urls'
 
 TEMPLATE_DIRS = (
-    "/home/matthew/work/python/mazepuzzlebox/templates"
+    ROOT_DIR + "templates"
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -100,6 +100,5 @@ import logging
 logging.basicConfig(
     level = logging.DEBUG,
     format = '%(asctime)s %(levelname)s %(message)s',
-    filename = '/tmp/mpb.log',
-    filemode = 'w'
+    filename = ROOT_DIR + '/logs/mpb.log',
 )

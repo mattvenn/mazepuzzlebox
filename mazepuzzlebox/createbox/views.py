@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.conf import settings
 import datetime
 from pytz import timezone
 
@@ -40,7 +41,7 @@ def details(request, id):
 
     #generate the DXF
     from subprocess import call
-    buildcommand = "/home/matthew/work/python/mazepuzzlebox/DXF/buildall.sh"
+    buildcommand = settings.ROOT_DIR + "DXF/buildall.sh"
     logging.debug( "building DXF" )
     retcode = call([buildcommand,str(box.id),thickness,box.maze])
     if retcode != 0:
