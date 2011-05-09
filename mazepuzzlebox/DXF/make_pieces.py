@@ -1,14 +1,9 @@
 # thanks to kellbot for info on the sdxf library: http://www.kellbot.com/sdxf-python-library-for-dxf/
 import sdxf
 import sys
-dxfdir="processDXF/"
-# globals
-if len(sys.argv) != 2:
-    print "give thickness on the command line"
-    sys.exit(1)
-thickness = float(sys.argv[1]) #3.72 #thickness of material
+from django.conf import settings
+dxfdir=settings.ROOT_DIR + "mazepuzzlebox/DXF/processDXF/"
 
-print "using thickness", thickness, "mm"
 laserBurnGap = 0.3 #depends on laser cutter
 boxWidth = 100
 boxLength = 140
@@ -68,17 +63,21 @@ def drawCatchSlot2(x,y):
     d.append(sdxf.LwPolyLine(points=linePoints,flag=1,color=cutColor)) 
     #d.append(sdxf.Line(points=linePoints,color=cutColor)) 
 
-d=sdxf.Drawing()
-#drawRef()
-drawHinge(200,40)
-drawHinge(225,40)
-drawCatch(60,40)
-drawCatchSlot1(boxLength*1,boxWidth*3)
-drawCatchSlot2(boxLength*1,0)
-for col in range(2):
-    for row in range(4):
-        if row == 3:
-            drawHingeSlotLid(boxLength*col,boxWidth*row)
-        else:
-            drawHingeSlot(boxLength*col,boxWidth*row)
-d.saveas(dxfdir+'pieces.dxf')
+def make_pieces( t ):
+    global d, thickness
+    thickness = t
+    print "using thickness %f" % thickness
+    d=sdxf.Drawing()
+    #drawRef()
+    drawHinge(200,40)
+    drawHinge(225,40)
+    drawCatch(60,40)
+    drawCatchSlot1(boxLength*1,boxWidth*3)
+    drawCatchSlot2(boxLength*1,0)
+    for col in range(2):
+        for row in range(4):
+            if row == 3:
+                drawHingeSlotLid(boxLength*col,boxWidth*row)
+            else:
+                drawHingeSlot(boxLength*col,boxWidth*row)
+    d.saveas(dxfdir+'pieces.dxf')

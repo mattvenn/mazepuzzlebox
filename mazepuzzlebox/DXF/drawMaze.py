@@ -3,16 +3,18 @@ import simplejson as json
 import sdxf
 import math
 import sys
+from django.conf import settings
 
-dxfdir="processDXF/"
+dxfdir=settings.ROOT_DIR + "mazepuzzlebox/DXF/processDXF/"
 passageWidth = 5
+linePoints = []
+d = None
+maze = None
+drawColor = None
 xCells = 13
 yCells = 6
+dirs = [ "LEFT", "RIGHT", "TOP", "BOTTOM" ]
 
-if len(sys.argv) != 2:
-    print "give json on the command line"
-    sys.exit(1)
-jstr = sys.argv[1]
 
 #jstr = '[[1,1,1,1,0,0],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,0,0,1,1,1],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,0,0,1,1,1],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,1,1,1,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]'
 
@@ -50,7 +52,7 @@ class Cell():
 
 #functions for drawing
 def endShape():
-    global linePoints,drawColor
+    global drawColor,linePoints
     #import pdb; pdb.set_trace()
     d.append(sdxf.LwPolyLine(points=linePoints,flag=1,color=drawColor)) 
     linePoints = []
@@ -93,8 +95,10 @@ def drawVertex( dir, x,y ):
     if dir == "BOTTOM":
         vertex(x*passageWidth,y*passageWidth+passageWidth)
 
-def drawMaze():
+def drawDXFMaze():
+    global linePoints
     lineStarted = False
+    linePoints = []
     for dir in range(2):
         for x in range(xCells):
             for y in range(yCells):
@@ -120,20 +124,20 @@ def drawMaze():
 
 ##main start
 #prep drawing
-d=sdxf.Drawing()
+def drawMaze( jstr ):
+    global transX,transY,d,drawColor,maze
+    d=sdxf.Drawing()
 
-#import the maze
-matrix = json.loads( jstr )
-maze = [[Cell(x,y,matrix[x][y]) for y in range(yCells)] for x in range(xCells)]
+    #import the maze
+    matrix = json.loads( jstr )
+    maze = [[Cell(x,y,matrix[x][y]) for y in range(yCells)] for x in range(xCells)]
 
-dirs = [ "LEFT", "RIGHT", "TOP", "BOTTOM" ]
-linePoints = []
-transX = 10
-transY = 125
-drawColor = 0
-drawMaze()
-drawColor = 3
-transX = 150
-transY = 225
-drawMaze()
-d.saveas(dxfdir+'maze.dxf')
+    transX = 10
+    transY = 125
+    drawColor = 0
+    drawDXFMaze()
+    drawColor = 3
+    transX = 150
+    transY = 225
+    drawDXFMaze()
+    d.saveas(dxfdir+'maze.dxf')

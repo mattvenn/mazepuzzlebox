@@ -1,15 +1,9 @@
 import sdxf
 import sys
 import math
-dxfdir="processDXF/"
+from django.conf import settings
+dxfdir=settings.ROOT_DIR + "mazepuzzlebox/DXF/processDXF/"
 
-# globals
-if len(sys.argv) != 2:
-    print "give id on command line"
-    sys.exit(1)
-id = sys.argv[1]
-
-print "using id %s" % id
 
 char_width = 3
 char_height = 3
@@ -87,11 +81,15 @@ def create_num(x,y,n):
         d.append(sdxf.LwPolyLine(points=linePoints,color=char_color))
 
 #do it
-d=sdxf.Drawing()
-for i in range( len( id )):
-    print id[i]
-    x = i * char_width + char_spacing * i
-    create_num( x, 0, int(id[i]) )
+def make_id( id ):
+    global d
+    d=sdxf.Drawing()
+    print "using id %d" % id
+    id_str = str(id)
+    for i in range( len( id_str )):
+        print id_str[i]
+        x = i * char_width + char_spacing * i
+        create_num( x, 0, int(id_str[i]) )
 
-d.saveas(dxfdir+'id_numbers.dxf')
-    
+    d.saveas(dxfdir+'id_numbers.dxf')
+        
