@@ -10,6 +10,11 @@ from pytz import timezone
 from createbox.models import Box
 from createbox.drawMaze import drawMaze, checkJSON
 import logging
+#dxf stuff
+import DXF.drawMaze
+import DXF.make_id
+import DXF.make_pieces
+import DXF.joinDXF
 
 def index(request):
     latest_box_list = Box.objects.all().order_by('-pub_date')[:5]
@@ -39,7 +44,12 @@ def details(request, id):
         logging.warn(err_msg)
         return render_to_response('detail.html', { 'box':box, 'error_message': err_msg, }, context_instance=RequestContext(request))
 
-    #generate the DXF
+    #make the DXF
+    DXF.drawMaze.drawMaze( box.maze )
+    DXF.make_pieces.make_pieces(float(thickness))
+    DXF.make_id.make_id(box.id)
+    DXF.joinDXF.joinDXF(box.id)
+    """
     from subprocess import call
     buildcommand = settings.ROOT_DIR + "DXF/buildall.sh"
     logging.debug( "building DXF" )
@@ -49,6 +59,7 @@ def details(request, id):
         err_msg = "problem with rendering DXF for id %s thickness %s maze %s" % ( box.id, thickness, box.maze )
         logging.error(err_msg)
         return render_to_response('detail.html', { 'box':box, 'error_message': err_msg, }, context_instance=RequestContext(request))
+    """
 
     link = "/boxes/boxmaze_%i.dxf" % box.id
     return render_to_response('detail.html', {'box': box, 'plans' : link, 'thickness' : thickness },
