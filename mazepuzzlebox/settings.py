@@ -2,7 +2,15 @@
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
-ROOT_DIR = "/home/matthew/work/python/mazepuzzlebox/"
+
+LIVE = 0
+if LIVE:
+    ROOT_DIR = "/var/www/mazepuzzlebox/"
+    ROOT_URLCONF = 'urls'
+else:
+    ROOT_DIR = "/home/matthew/work/python/mazepuzzlebox/"
+    ROOT_URLCONF = 'mazepuzzlebox.urls'
+
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
@@ -75,7 +83,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'mazepuzzlebox.urls'
 
 TEMPLATE_DIRS = (
     ROOT_DIR + "templates"

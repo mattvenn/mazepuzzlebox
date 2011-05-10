@@ -4,7 +4,6 @@ import math
 from django.conf import settings
 dxfdir=settings.ROOT_DIR + "mazepuzzlebox/DXF/processDXF/"
 
-
 char_width = 3
 char_height = 3
 char_spacing = 1

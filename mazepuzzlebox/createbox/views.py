@@ -45,21 +45,16 @@ def details(request, id):
         return render_to_response('detail.html', { 'box':box, 'error_message': err_msg, }, context_instance=RequestContext(request))
 
     #make the DXF
-    DXF.drawMaze.drawMaze( box.maze )
-    DXF.make_pieces.make_pieces(float(thickness))
-    DXF.make_id.make_id(box.id)
-    DXF.joinDXF.joinDXF(box.id)
-    """
-    from subprocess import call
-    buildcommand = settings.ROOT_DIR + "DXF/buildall.sh"
-    logging.debug( "building DXF" )
-    retcode = call([buildcommand,str(box.id),thickness,box.maze])
-    if retcode != 0:
-        logging.debug( "got return code %i" % retcode )
-        err_msg = "problem with rendering DXF for id %s thickness %s maze %s" % ( box.id, thickness, box.maze )
+    #TODO better error handling
+    try:
+        DXF.drawMaze.drawMaze( box.maze )
+        DXF.make_pieces.make_pieces(float(thickness))
+        DXF.make_id.make_id(box.id)
+        DXF.joinDXF.joinDXF(box.id)
+    except Exception as e:
+        err_msg = "error making DXF: ", e.args
         logging.error(err_msg)
         return render_to_response('detail.html', { 'box':box, 'error_message': err_msg, }, context_instance=RequestContext(request))
-    """
 
     link = "/boxes/boxmaze_%i.dxf" % box.id
     return render_to_response('detail.html', {'box': box, 'plans' : link, 'thickness' : thickness },
