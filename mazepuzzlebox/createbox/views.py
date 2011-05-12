@@ -63,7 +63,7 @@ def details(request, id):
 
 def create(request ):
     try:
-        mazeJSON = request.POST['maze']
+        mazeJSON = request.POST['mazejson']
     except:
         return render_to_response('create.html',
             context_instance=RequestContext(request))

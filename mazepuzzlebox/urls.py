@@ -9,5 +9,6 @@ urlpatterns = patterns('',
     (r'^(?P<id>\d+)$', 'createbox.views.details'),
     (r'^boxes/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/matthew/work/python/mazepuzzlebox/boxDXFs'}),
     (r'^mazePNGs/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/matthew/work/python/mazepuzzlebox/mazePNGs/'}),
+    (r'^external/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/matthew/work/python/mazepuzzlebox/external/'}),
 
 )
