@@ -23,23 +23,29 @@ class MazeDesigner
         ###
         $(document).mouseup =>
             if @action
+                path = false 
+                islands = false
                 @grid = @gridGen allCells
                 if @checkPath()
+                    path = true
                     @setStatus('path', 'good')
-                    document.createmaze.mazebutton.disabled = false
                 else
                     @setStatus('path', 'bad')
-                    document.createmaze.mazebutton.disabled = true
                 
                 if @checkIslands()
                     @setStatus('island', 'bad')
-                    document.createmaze.mazebutton.disabled = true
                 else
                     @setStatus('island', 'good')
+                    islands = true
+
+                if path and islands
+                    json = @makeJson @grid
+                    $('#json').text(json)
+                    document.createmaze.mazejson.value = json
                     document.createmaze.mazebutton.disabled = false
-                json = @makeJson @grid
-                $('#json').text(json)
-                document.createmaze.mazejson.value = json
+                else
+                    document.createmaze.mazebutton.disabled = true
+
             @action = false
                 
 
