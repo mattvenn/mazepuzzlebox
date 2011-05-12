@@ -1,0 +1,61 @@
+html {
+    background-color: #F7FDFA;
+}
+
+body {
+    text-align: center;
+}
+
+td {
+    border: 1px solid white;
+    width: 40px;
+    height: 40px;
+}
+
+td.no-go {
+    border: none;
+}
+
+td.start, td.end {
+    background-color: blue;
+}
+
+p {
+    margin-top: 30px;
+}
+
+h1 {
+    font-family: Arial, sans-serif;
+    line-height: 1em;
+    font-size: 27px;
+    font-weight: bold;
+    text-shadow: #888 10px 10px 5px;
+}
+
+.thinking {
+    color: #FFF824;
+}
+
+.bad {
+    color: red;
+}
+
+.good {
+    color: green;
+}
+
+
+
+td.gone {
+    background-color: white;
+}
+
+#maze {
+    display: inline-block;
+    margin-top: 50px;
+    padding: 3px;
+    background-color: black;
+    -moz-box-shadow: 10px 10px 5px #888;
+    -webkit-box-shadow: 10px 10px 5px #888;
+    box-shadow: 10px 10px 5px #888;
+}
