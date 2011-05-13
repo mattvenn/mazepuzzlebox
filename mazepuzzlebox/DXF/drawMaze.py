@@ -61,7 +61,7 @@ def vertex(x,y):
     #mirror
     y = 0 - y
     #rotate; thanks http://en.wikipedia.org/wiki/Rotation_matrix#Basic_rotations
-    angle = math.pi / 2
+    angle = 3 * (math.pi / 2 )
     rotX = x * math.cos(angle) - y * math.sin(angle)
     rotY = x * math.sin(angle) + y * math.cos(angle)
     x = rotX
@@ -132,12 +132,12 @@ def drawMaze( jstr ):
     matrix = json.loads( jstr )
     maze = [[Cell(x,y,matrix[x][y]) for y in range(yCells)] for x in range(xCells)]
 
-    transX = 10
-    transY = 125
+    transX = 40
+    transY = 190
     drawColor = 0
     drawDXFMaze()
     drawColor = 3
-    transX = 150
-    transY = 225
+    transX = 180
+    transY = 290
     drawDXFMaze()
     d.saveas(dxfdir+'maze.dxf')
