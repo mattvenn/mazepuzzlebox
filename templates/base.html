@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/external/style.css" />
     <title>{% block title %}maze puzzle box{% endblock %}</title>
+    <link href="/external/style.css" rel="stylesheet" type="text/css" />
     {% block extrahead %}{% endblock %}
 </head>
 <body>
@@ -19,8 +19,7 @@
     <hr>
     <div id="footer">
         {% block footer %}
-            <a href="/">Home</a> | <a href="/create">Create</a>
-            <p>A project by <a href="http://mattvenn.net">Matt Venn</a> 2011</p>
+            <a href="/">Home</a> | <a href="/create">Create</a> | <a href="/external/about.html">About</a>
         {% endblock %}
     </div>
 </body>

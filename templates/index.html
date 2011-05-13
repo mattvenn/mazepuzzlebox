@@ -3,7 +3,8 @@
 {% block content %}
 
 {% if latest_box_list %}
-    <p> latest boxes </p>
+    <p>click <a href="/create">here</a> to create your own box!</b>
+    <p>latest boxes: </p>
     <ul>
     {% for box in latest_box_list %}
         <li><a href="/{{ box.id }}">{{box.id}} : {{ box.pub_date }}</a></li>

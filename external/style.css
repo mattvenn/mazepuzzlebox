@@ -10,7 +10,7 @@ body {
    font-style:normal;
 }
 
-#header
+h1, #header
 {
    font-size:14pt;
    font-style:normal;
@@ -24,4 +24,3 @@ body {
    font-style:normal;
    font-weight:bold;
 }
-
