@@ -122,8 +122,8 @@ class MazeDesigner
 
     checkPath: ->
         @visited = []
-        
-        return @hunt([0,0], 1, 'E')
+        #changed the start point 
+        return @hunt([12,5], 1, 'E')
     
     checkIslands: ->
         @visited = []
