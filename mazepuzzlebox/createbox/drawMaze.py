@@ -6,6 +6,7 @@ import json
 import simplejson as json
 from django.conf import settings
 
+#TODO
 xCells = 13
 yCells = 6
 
