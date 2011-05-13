@@ -1,7 +1,7 @@
-what are these?
+what is this
 --------------
+web application to create a maze puzzle box DXF.
 
-these are the scripts to generate the mazepuzzlebox cad files
 for more info about mazepuzzlebox, go here: http://www.instructables.com/id/maze-puzzle-box/
 
 instructions
@@ -12,10 +12,14 @@ todo
 ----
 
 - check polylines work with HPC laser cutter software
+- deal with changes in box design
+- styling
 
 thanks 
 ------
 
 - for whoever contributed sdxf
 - London Hackspace
+- Johannes for the javascript maze designer
+- Alice and Andy for UI and python support
 
