@@ -134,9 +134,9 @@ def drawMaze( jstr ):
 
     transX = 40
     transY = 190
-    drawColor = 0
+    drawColor = settings.CUTCOLOR
     drawDXFMaze()
-    drawColor = 3
+    drawColor = settings.PATTERNCOLOR
     transX = 180
     transY = 290
     drawDXFMaze()

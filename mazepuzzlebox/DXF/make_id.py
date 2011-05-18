@@ -7,7 +7,7 @@ dxfdir=settings.ROOT_DIR + "mazepuzzlebox/DXF/processDXF/"
 char_width = 3
 char_height = 3
 char_spacing = 1
-char_color = 3
+char_color = settings.PATTERNCOLOR
 x_offset = 183
 y_offset = 220
 #shift routine

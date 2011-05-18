@@ -8,9 +8,7 @@ laserBurnGap = 0.3 #depends on laser cutter
 boxWidth = 100
 boxLength = 140
 
-cutColor = 0
-etchColor = 2
-patternColor = 3
+cutColor = settings.CUTCOLOR
 
 def drawRef():
     linePoints = [(-2,0),(2,0)]
