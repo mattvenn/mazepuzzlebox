@@ -2,6 +2,8 @@
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+CUTCOLOR = 0
+PATTERNCOLOR = 3
 
 LIVE = 0
 if LIVE:
@@ -98,7 +100,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'createbox',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
