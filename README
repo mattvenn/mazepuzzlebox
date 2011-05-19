@@ -8,12 +8,17 @@ instructions
 ------------
 http://www.instructables.com/id/maze-puzzle-box/
 
-todo
-----
+s/w todo
+--------
 
-- check polylines work with HPC laser cutter software
-- deal with changes in box design
-- styling
++ deal with changes in box design, using version numbers
+- styling; please someone help me!
+
+box todo
+--------
+
+- allow bigger mazes
+- solve potential magnet problem 
 
 thanks 
 ------
