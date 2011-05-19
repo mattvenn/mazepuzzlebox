@@ -1,6 +1,8 @@
 what is this
 --------------
-web application to create a maze puzzle box DXF.
+django web application to create a maze puzzle box DXF.
+
+live site is here: http://www.mazepuzzlebox.co.uk
 
 for more info about mazepuzzlebox, go here: http://www.instructables.com/id/maze-puzzle-box/
 
