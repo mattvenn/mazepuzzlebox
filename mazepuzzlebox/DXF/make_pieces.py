@@ -7,6 +7,8 @@ dxfdir=settings.ROOT_DIR + "mazepuzzlebox/DXF/processDXF/"
 laserBurnGap = 0.3 #depends on laser cutter
 boxWidth = 100
 boxLength = 140
+#if hinges don't fit in then adjust this, lower == larger
+lidHingeSlotReducer = 0.2
 
 cutColor = settings.CUTCOLOR
 
@@ -35,21 +37,17 @@ def drawCatch(x,y):
 #give x and y for top left corner of box
 def drawHingeSlot(x,y):
     linePoints = [(x+boxLength,y+10),(x+boxLength-20,y+10),(x+boxLength-20,y+10+thickness),(x+boxLength,y+10+thickness)]
-    #d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor)) 
-    d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor,flag=1)) 
+    d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor)) 
     linePoints = [(x+boxLength,y+boxWidth-10),(x+boxLength-20,y+boxWidth-10),(x+boxLength-20,y+boxWidth-10-thickness),(x+boxLength,y+boxWidth-10-thickness)]
-    d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor,flag=1)) 
-#    d.append(sdxf.Line(points=linePoints,color=cutColor)) 
+    d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor)) 
 
 #give x and y for top left corner of box
 #slightly narrower for a tight fit
 def drawHingeSlotLid(x,y):
-    linePoints = [(x+boxLength,y+10+laserBurnGap),(x+boxLength-20,y+10+laserBurnGap),(x+boxLength-20,y+10+thickness-laserBurnGap),(x+boxLength,y+10+thickness-laserBurnGap)]
-    d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor,flag=1)) 
-#    d.append(sdxf.Line(points=linePoints,color=cutColor)) 
-    linePoints = [(x+boxLength,y+boxWidth-10-laserBurnGap),(x+boxLength-20,y+boxWidth-10-laserBurnGap),(x+boxLength-20,y+boxWidth-10-thickness+laserBurnGap),(x+boxLength,y+boxWidth-10-thickness+laserBurnGap)]
-    #d.append(sdxf.Line(points=linePoints,color=cutColor)) #flag=1 means close the polyline
-    d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor,flag=1)) #flag=1 means close the polyline
+    linePoints = [(x+boxLength,y+10+lidHingeSlotReducer),(x+boxLength-20,y+10+lidHingeSlotReducer),(x+boxLength-20,y+10+thickness-lidHingeSlotReducer),(x+boxLength,y+10+thickness-lidHingeSlotReducer)]
+    d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor)) 
+    linePoints = [(x+boxLength,y+boxWidth-10-lidHingeSlotReducer),(x+boxLength-20,y+boxWidth-10-lidHingeSlotReducer),(x+boxLength-20,y+boxWidth-10-thickness+lidHingeSlotReducer),(x+boxLength,y+boxWidth-10-thickness+lidHingeSlotReducer)]
+    d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor))
 
 def drawCatchSlot1(x,y):
     linePoints = [(x+15-thickness/2+laserBurnGap,y+40),(x+15+thickness/2-laserBurnGap,y+40),(x+15+thickness/2-laserBurnGap,y+40+30),(x+15-thickness/2+laserBurnGap,y+40+30)]
@@ -74,7 +72,7 @@ def make_pieces( t ):
     drawCatchSlot2(boxLength*1,0)
     for col in range(2):
         for row in range(4):
-            if row == 3:
+            if (row == 3 and col == 1) or (row == 0 and col == 1):
                 drawHingeSlotLid(boxLength*col,boxWidth*row)
             else:
                 drawHingeSlot(boxLength*col,boxWidth*row)
