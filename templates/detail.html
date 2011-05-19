@@ -23,14 +23,20 @@
 <ul>
 <li> id: {{ box.id }} </li>
 <li> date created: {{ box.pub_date }} </li>
+<li> box DXF version : {{ box.version }} </li>
+<li> current DXF version : {{ version }} </li>
 </ul>
 
+{% if version == box.version %}
 <p>To download plans for this box, enter your material thickness in mm</p>
 <form action="/{{ box.id }}" method="post">
 {% csrf_token %}
     <input type="text" name="thickness" />
     <input type="submit" value="generate plans" />
 </form>
+{% else %}
+<p id="error">New box plans can't be generated because the DXF version is out of date, <a href="/create">make a new box</a>!</p>
+{% endif %}
 
 {% if plans %}
 <p> download : <a href="{{ plans }}">plans for material thickness {{thickness}}mm</a></p>

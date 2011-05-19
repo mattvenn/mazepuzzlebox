@@ -1,18 +1,22 @@
 # Django settings for mazepuzzlebox project.
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 CUTCOLOR = 0
 PATTERNCOLOR = 3
+
+#update this when old mazes need to be put out of action
+DXFVERSION = 1
 
 LIVE = 0
 if LIVE:
     ROOT_DIR = "/var/www/mazepuzzlebox/"
     ROOT_URLCONF = 'urls'
+    DEBUG = False
 else:
     ROOT_DIR = "/home/matthew/work/python/mazepuzzlebox/"
     ROOT_URLCONF = 'mazepuzzlebox.urls'
+    DEBUG = True
 
+TEMPLATE_DEBUG = DEBUG
 ADMINS = (
     # ('Your Name', 'your_email@domain.com'),
 )
