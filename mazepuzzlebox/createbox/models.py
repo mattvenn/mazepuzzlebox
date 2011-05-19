@@ -18,6 +18,7 @@ noGoEndY = 6
 class Box(models.Model):
     pub_date = models.DateTimeField('date published')
     maze = models.CharField(max_length=400)
+    version = models.IntegerField('version')
 
     #we want the maze in columns of rows not rows of columns
     def htmlMaze(self):
