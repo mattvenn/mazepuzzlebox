@@ -24,3 +24,13 @@ h1, #header
    font-style:normal;
    font-weight:bold;
 }
+
+table.indexTable 
+{
+vertical-align: top;
+}
+td.indexTable
+{
+vertical-align: top;
+width: 400px;
+}
