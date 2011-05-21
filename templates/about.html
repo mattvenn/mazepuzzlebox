@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="/external/style.css" />
-    <title>about</title>
-</head>
-<body>
-    <div id="header">
-    <a href="/">MazePuzzleBox.co.uk</a>
-    </div>
-    <hr>
+{% extends "base.html" %}
+{% block title %}about{% endblock %}
+{% block content %}
         <p>
             <ul>
             <li>Maze puzzle box is a project by <a href="http://www.mattvenn.net">Matt Venn</a></li>
@@ -25,10 +17,4 @@
             <li>Open source community for supplying such awesome tools: <a href="http://www.djangoproject.com/">Django</a>, <a href="http://www.python.org/">Python</a> and all the rest</li>
             </ul>
         </p>
-    <hr>
-    <div id="footer">
-            <a href="/">Home</a> | <a href="/create">Create</a> | <a href="/external/About.html">About</a>
-    </div>
-</body>
-</html>
-
+{% endblock %}
