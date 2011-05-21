@@ -13,6 +13,8 @@ http://www.instructables.com/id/maze-puzzle-box/
 s/w todo
 --------
 
++ fix external files so they can use the base template somehow, used 
+    from django.views.generic.simple import direct_to_template
 - add 500 and 404
 - fix admin media files on live/devel
 - add Johannes rel fix
