@@ -5,7 +5,7 @@ CUTCOLOR = 0
 PATTERNCOLOR = 3
 
 #update this when old mazes need to be put out of action
-DXFVERSION = 1
+DXFVERSION = 2
 
 LIVE = 0
 if LIVE:
