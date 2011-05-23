@@ -118,12 +118,13 @@ class MazeDesigner
         [cell.index(), cell.parent().index()]
 
     withinMaze: (x, y) ->
-        13 > x >= 0 and 6 > y >= 0
+        #changed for bigger maze
+        16 > x >= 0 and 6 > y >= 0
 
     checkPath: ->
         @visited = []
         #changed the start point 
-        return @hunt([12,5], 1, 'E')
+        return @hunt([15,5], 1, 'E')
     
     checkIslands: ->
         @visited = []
