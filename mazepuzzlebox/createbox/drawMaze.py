@@ -10,19 +10,6 @@ from django.conf import settings
 xCells = 13
 yCells = 6
 
-def checkJSON(jstr):
-    try:
-        maze = json.loads( jstr )
-    except:
-        raise Exception( "bad json string" )
-    try:
-        if len( maze ) != xCells:
-            raise Exception( "wrong number of columns in json array" )
-        for i in range( xCells ):
-            if len( maze[i] ) != yCells:
-                raise Exception( "wrong number of rows in json array" )
-    except:
-        raise Exception( "json doesn't represent an array" )
 
 def drawMaze( jstr, id ):
     

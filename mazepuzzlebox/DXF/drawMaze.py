@@ -10,15 +10,10 @@ passageWidth = 5
 linePoints = []
 d = None
 maze = None
+xCells = None
+yCells = None
 drawColor = None
-xCells = 13
-yCells = 6
 dirs = [ "LEFT", "RIGHT", "TOP", "BOTTOM" ]
-
-
-#jstr = '[[1,1,1,1,0,0],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,0,0,1,1,1],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,0,0,1,1,1],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,1,1,1,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]'
-
-
 
 #cell utility class
 class Cell():
@@ -124,8 +119,9 @@ def drawDXFMaze():
 
 ##main start
 #prep drawing
-def drawMaze( jstr ):
-    global transX,transY,d,drawColor,maze
+def drawMaze( jstr,box ):
+    global transX,transY,d,drawColor,maze,xCells,yCells
+    (xCells,yCells)=box.getDimensions()
     d=sdxf.Drawing()
 
     #import the maze

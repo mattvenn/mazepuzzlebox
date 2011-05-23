@@ -8,7 +8,6 @@ import datetime
 from pytz import timezone
 
 from createbox.models import Box
-from createbox.drawMaze import drawMaze, checkJSON
 import logging
 #dxf stuff
 import DXF.drawMaze
@@ -17,7 +16,7 @@ import DXF.make_pieces
 import DXF.joinDXF
 
 def index(request):
-    latest_box_list = Box.objects.all().order_by('-pub_date')[:5]
+    latest_box_list = Box.objects.all().order_by('-pub_date')[:15]
     return render_to_response('index.html', { 'latest_box_list': latest_box_list, })
 
 def details(request, id):
@@ -47,7 +46,7 @@ def details(request, id):
     #make the DXF
     #TODO better error handling
     try:
-        DXF.drawMaze.drawMaze( box.maze )
+        DXF.drawMaze.drawMaze( box.maze,box )
         DXF.make_pieces.make_pieces(float(thickness))
         DXF.make_id.make_id(box.id)
         DXF.joinDXF.joinDXF(box.id)
@@ -68,9 +67,10 @@ def create(request ):
         return render_to_response('create.html',
             context_instance=RequestContext(request))
 
-    #error check json string
+    #TODO - this should be a custom form with validator
+    #error check json string 
     try:
-        checkJSON(mazeJSON)
+        Box.checkJSON(mazeJSON)
     except Exception as e:
         err_msg = "bad json: %s" % e
         logging.warn(err_msg)
