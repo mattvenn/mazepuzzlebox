@@ -24,6 +24,8 @@ class Box(models.Model):
     maze = models.CharField(max_length=400)
     version = models.IntegerField('version')
 
+    def clean(self):
+        self.checkJSON(self.maze)
 
     def getDimensions(self):
         if self.version == 1:
@@ -51,13 +53,8 @@ class Box(models.Model):
                 
         return outmaze
 
-    def checkJSON(jstr):
-        version=settings.DXFVERSION
-        #TODO repeated code
-        if version == 1:
-            (xCells,yCells)=(13,6)
-        if version == 2:
-            (xCells,yCells)=(16,6)
+    def checkJSON(self,jstr):
+        (xCells,yCells) = self.getDimensions()        
         try:
             maze = json.loads( jstr )
         except:
@@ -70,7 +67,3 @@ class Box(models.Model):
                     raise Exception( "wrong number of rows in json array" )
         except:
             raise Exception( "json doesn't represent an array" )
-
-
-    checkJSON = Callable(checkJSON)
-

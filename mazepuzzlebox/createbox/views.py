@@ -67,17 +67,8 @@ def create(request ):
         return render_to_response('create.html',
             context_instance=RequestContext(request))
 
-    #TODO - this should be a custom form with validator
-    #error check json string 
-    try:
-        Box.checkJSON(mazeJSON)
-    except Exception as e:
-        err_msg = "bad json: %s" % e
-        logging.warn(err_msg)
-        return render_to_response('create.html', { 'error_message': err_msg },
-            context_instance=RequestContext(request))
-
     box = Box(pub_date=datetime.datetime.now(timezone('GMT')),maze=mazeJSON,version=settings.DXFVERSION)
+    box.clean()
     box.save()
 
     # Always return an HttpResponseRedirect after successfully dealing
