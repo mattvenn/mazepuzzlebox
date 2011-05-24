@@ -8,7 +8,9 @@ laserBurnGap = 0.3 #depends on laser cutter
 boxWidth = 100
 boxLength = 140
 #if hinges don't fit in then adjust this, lower == larger
-lidHingeSlotReducer = 0.2
+lidHingeSlotReducer = 0.15
+#notch needs moving slightly, lower = move notch away from the bottom.
+notchCorrection = + 0.1 
 
 cutColor = settings.CUTCOLOR
 
@@ -28,7 +30,7 @@ def drawCatch(x,y):
     notchDepth = 3
     linePoints = [(x+0,y+0),(x+30,y+0),(x+30,y+thickness + laserBurnGap ),(x+20,y+thickness + laserBurnGap ),(x+20,y+thickness * 7 ),(x+10,y+thickness * 7 ),
     #notch
-    (x+10,y+thickness * 6 - laserBurnGap),(x+10 + notchDepth,y+ thickness * 6 - laserBurnGap),(x+10 + notchDepth,y+ thickness * 5),(x+10, y+thickness * 5 ),
+    (x+10,y+thickness * 6 - laserBurnGap + notchCorrection),(x+10 + notchDepth,y+ thickness * 6 - laserBurnGap + notchCorrection),(x+10 + notchDepth,y+ thickness * 5),(x+10, y+thickness * 5 ),
     #finish
     (x+10,y+thickness + laserBurnGap ),(x+0,y+ thickness + laserBurnGap),
     ]
