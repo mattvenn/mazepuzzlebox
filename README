@@ -15,8 +15,8 @@ s/w todo
 
 + fix external files so they can use the base template somehow, used 
     from django.views.generic.simple import direct_to_template
-- add 500 and 404
-- fix admin media files on live/devel
++ add 500 and 404
++ fix admin media files on live/devel
 - add Johannes rel fix
 + deal with changes in box design, using version numbers
 - styling; please someone help me!
@@ -24,7 +24,7 @@ s/w todo
 box todo
 --------
 
-- allow bigger mazes
++ allow bigger mazes
 - solve potential magnet problem 
 
 thanks 
