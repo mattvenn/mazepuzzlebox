@@ -5,17 +5,34 @@
 <p>
 <a href="/create">create your own box</a> or <a href="http://www.instructables.com/id/maze-puzzle-box/">read the instructions</a>
 </p>
-<table class="indexTable"><tr><td class="indexTable">
-        {% if latest_box_list %}
+<table class="indexTable">
+    <tr>
+    <td class="indexTable">
+        {% if boxes %}
             <p>Latest boxes: </p>
             <ul>
-            {% for box in latest_box_list %}
+            {% for box in boxes.object_list %}
                 <li><a href="/{{ box.id }}">{{box.id}} : {{ box.pub_date }}</a></li>
             {% endfor %}
             </ul>
-        {% else %}
-            <p>No boxes are available.</p>
         {% endif %}
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if boxes.has_previous %}
+                    <a href="?page={{ boxes.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ boxes.number }} of {{ boxes.paginator.num_pages }}.
+                </span>
+
+                {% if boxes.has_next %}
+                    <a href="?page={{ boxes.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+
         </td>
         <td>
 <a href="http://www.flickr.com/photos/matthewvenn/5536665535/" title="maze puzzle box open by matthewvenn, on Flickr"><img src="http://farm6.static.flickr.com/5299/5536665535_c28b13c7ea.jpg" width="369" height="500" alt="maze puzzle box open"></a>

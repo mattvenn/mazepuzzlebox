@@ -1,4 +1,5 @@
 # Create your views here.
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
@@ -16,8 +17,20 @@ import DXF.make_pieces
 import DXF.joinDXF
 
 def index(request):
-    latest_box_list = Box.objects.all().order_by('-pub_date')[:15]
-    return render_to_response('index.html', { 'latest_box_list': latest_box_list, })
+    latest_box_list = Box.objects.all().order_by('-pub_date')
+    paginator = Paginator(latest_box_list, 25)
+    page = request.GET.get('page')
+    try:
+        boxes = paginator.page(page)
+    except TypeError:
+        boxes = paginator.page(1)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        boxes = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        boxes = paginator.page(paginator.num_pages)
+    return render_to_response('index.html', { 'boxes': boxes, })
 
 def details(request, id):
     try:
