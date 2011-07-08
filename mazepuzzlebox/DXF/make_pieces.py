@@ -28,11 +28,11 @@ def drawHinge(x,y):
 
 def drawCatch(x,y):
     notchDepth = 3
-    linePoints = [(x+0,y+0),(x+30,y+0),(x+30,y+thickness + laserBurnGap ),(x+20,y+thickness + laserBurnGap ),(x+20,y+thickness * 7 ),(x+10,y+thickness * 7 ),
+    linePoints = [(x+0,y+0),(x+30,y+0),(x+30,y+thickness + laserBurnGap ),(x+20+laserBurnGap,y+thickness + laserBurnGap ),(x+20+laserBurnGap,y+thickness * 7 ),(x+10-laserBurnGap,y+thickness * 7 ),
     #notch
-    (x+10,y+thickness * 6 - laserBurnGap + notchCorrection),(x+10 + notchDepth,y+ thickness * 6 - laserBurnGap + notchCorrection),(x+10 + notchDepth,y+ thickness * 5),(x+10, y+thickness * 5 ),
+    (x+10-laserBurnGap,y+thickness * 6 - laserBurnGap + notchCorrection),(x+10 + notchDepth,y+ thickness * 6 - laserBurnGap + notchCorrection),(x+10 + notchDepth,y+ thickness * 5),(x+10-laserBurnGap, y+thickness * 5 ),
     #finish
-    (x+10,y+thickness + laserBurnGap ),(x+0,y+ thickness + laserBurnGap),
+    (x+10-laserBurnGap,y+thickness + laserBurnGap ),(x+0,y+ thickness + laserBurnGap),
     ]
     d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor,flag=1)) 
 
@@ -51,12 +51,12 @@ def drawHingeSlotLid(x,y):
     linePoints = [(x+boxLength,y+boxWidth-10-lidHingeSlotReducer),(x+boxLength-20,y+boxWidth-10-lidHingeSlotReducer),(x+boxLength-20,y+boxWidth-10-thickness+lidHingeSlotReducer),(x+boxLength,y+boxWidth-10-thickness+lidHingeSlotReducer)]
     d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor))
 
-def drawCatchSlot1(x,y):
+def drawLidCatchSlot(x,y):
     linePoints = [(x+15-thickness/2+laserBurnGap,y+40),(x+15+thickness/2-laserBurnGap,y+40),(x+15+thickness/2-laserBurnGap,y+40+30),(x+15-thickness/2+laserBurnGap,y+40+30)]
     #d.append(sdxf.Line(points=linePoints,color=cutColor)) 
     d.append(sdxf.LwPolyLine(points=linePoints,flag=1,color=cutColor)) 
 
-def drawCatchSlot2(x,y):
+def drawLowerLidCatchSlot(x,y):
     linePoints = [(x+15-thickness/2+laserBurnGap,y+40+10),(x+15+thickness/2-laserBurnGap,y+40+10),(x+15+thickness/2-laserBurnGap,y+40+20),(x+15-thickness/2+laserBurnGap,y+40+20)]
     d.append(sdxf.LwPolyLine(points=linePoints,flag=1,color=cutColor)) 
     #d.append(sdxf.Line(points=linePoints,color=cutColor)) 
@@ -70,8 +70,8 @@ def make_pieces( t ):
     drawHinge(200,40)
     drawHinge(225,40)
     drawCatch(60,40)
-    drawCatchSlot1(boxLength*1,boxWidth*3)
-    drawCatchSlot2(boxLength*1,0)
+    drawLidCatchSlot(boxLength*1,boxWidth*3)
+    drawLowerLidCatchSlot(boxLength*0,0)
     for col in range(2):
         for row in range(4):
             if (row == 3 and col == 1) or (row == 0 and col == 1):
