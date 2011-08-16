@@ -25,6 +25,17 @@ h1, #header
    font-weight:bold;
 }
 
+table.paypalTable 
+{
+}
+th.paypalTable
+{
+   text-align: left; 
+}
+td.paypalTable
+{
+width: 400px;
+}
 table.indexTable 
 {
 vertical-align: top;
