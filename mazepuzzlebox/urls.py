@@ -14,5 +14,6 @@ urlpatterns = patterns('',
     (r'^external/(?P<path>.*)$', 'django.views.static.serve', {'document_root': '/home/matthew/work/python/mazepuzzlebox/external/'}),
     (r'^admin/', include(admin.site.urls)),
     (r'^about',  direct_to_template, {'template': 'about.html'}),
+    (r'^links',  direct_to_template, {'template': 'links.html'}),
     (r'^prices',  direct_to_template, {'template': 'prices.html'}),
 )
