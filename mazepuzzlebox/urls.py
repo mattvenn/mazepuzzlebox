@@ -15,5 +15,5 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^about',  direct_to_template, {'template': 'about.html'}),
     (r'^links',  direct_to_template, {'template': 'links.html'}),
-    (r'^prices',  direct_to_template, {'template': 'prices.html'}),
+    (r'^tips',  direct_to_template, {'template': 'tips.html'}),
 )
