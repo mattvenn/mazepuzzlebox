@@ -4,13 +4,12 @@ import sys
 from django.conf import settings
 dxfdir=settings.ROOT_DIR + "mazepuzzlebox/DXF/processDXF/"
 
-laserBurnGap = 0.3 #depends on laser cutter
+laserBurnGap = 0.15 #depends on laser cutter
 boxWidth = 100
 boxLength = 140
 #if hinges don't fit in then adjust this, lower == larger
-lidHingeSlotReducer = 0.15
 #notch needs moving slightly, lower = move notch away from the bottom.
-notchCorrection = + 0.1 
+notchCorrection = + 0.3 
 
 cutColor = settings.CUTCOLOR
 
@@ -28,9 +27,9 @@ def drawHinge(x,y):
 
 def drawCatch(x,y):
     notchDepth = 3
-    linePoints = [(x+0,y+0),(x+30,y+0),(x+30,y+thickness + laserBurnGap ),(x+20+laserBurnGap,y+thickness + laserBurnGap ),(x+20+laserBurnGap,y+thickness * 7 ),(x+10-laserBurnGap,y+thickness * 7 ),
+    linePoints = [(x+0,y+0),(x+30,y+0),(x+30,y+thickness + laserBurnGap ),(x+20+laserBurnGap,y+thickness + laserBurnGap ),(x+20+laserBurnGap,y+thickness * 7 + laserBurnGap ),(x+10-laserBurnGap,y+thickness * 7 + laserBurnGap ),
     #notch
-    (x+10-laserBurnGap,y+thickness * 6 - laserBurnGap + notchCorrection),(x+10 + notchDepth,y+ thickness * 6 - laserBurnGap + notchCorrection),(x+10 + notchDepth,y+ thickness * 5),(x+10-laserBurnGap, y+thickness * 5 ),
+    (x+10-laserBurnGap,y+thickness * 6 - laserBurnGap + notchCorrection),(x+10 + notchDepth,y+ thickness * 6 - laserBurnGap + notchCorrection),(x+10 + notchDepth,y+ thickness * 5 + notchCorrection),(x+10-laserBurnGap, y+thickness * 5 +notchCorrection),
     #finish
     (x+10-laserBurnGap,y+thickness + laserBurnGap ),(x+0,y+ thickness + laserBurnGap),
     ]
@@ -46,9 +45,9 @@ def drawHingeSlot(x,y):
 #give x and y for top left corner of box
 #slightly narrower for a tight fit
 def drawHingeSlotLid(x,y):
-    linePoints = [(x+boxLength,y+10+lidHingeSlotReducer),(x+boxLength-20,y+10+lidHingeSlotReducer),(x+boxLength-20,y+10+thickness-lidHingeSlotReducer),(x+boxLength,y+10+thickness-lidHingeSlotReducer)]
+    linePoints = [(x+boxLength,y+10+laserBurnGap),(x+boxLength-20,y+10+laserBurnGap),(x+boxLength-20,y+10+thickness-laserBurnGap),(x+boxLength,y+10+thickness-laserBurnGap)]
     d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor)) 
-    linePoints = [(x+boxLength,y+boxWidth-10-lidHingeSlotReducer),(x+boxLength-20,y+boxWidth-10-lidHingeSlotReducer),(x+boxLength-20,y+boxWidth-10-thickness+lidHingeSlotReducer),(x+boxLength,y+boxWidth-10-thickness+lidHingeSlotReducer)]
+    linePoints = [(x+boxLength,y+boxWidth-10-laserBurnGap),(x+boxLength-20,y+boxWidth-10-laserBurnGap),(x+boxLength-20,y+boxWidth-10-thickness+laserBurnGap),(x+boxLength,y+boxWidth-10-thickness+laserBurnGap)]
     d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor))
 
 def drawLidCatchSlot(x,y):
