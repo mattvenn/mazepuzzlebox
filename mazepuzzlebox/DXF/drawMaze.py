@@ -129,11 +129,11 @@ def drawMaze( jstr,box ):
     maze = [[Cell(x,y,matrix[x][y]) for y in range(yCells)] for x in range(xCells)]
 
     transX = 40
-    transY = 190
+    transY = 195 #190
     drawColor = settings.CUTCOLOR
     drawDXFMaze()
     drawColor = settings.PATTERNCOLOR
-    transX = 180
-    transY = 290
+    transX = 185 #180
+    transY = 300 #290
     drawDXFMaze()
     d.saveas(dxfdir+'maze.dxf')

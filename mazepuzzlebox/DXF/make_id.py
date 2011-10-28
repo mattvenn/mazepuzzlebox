@@ -8,8 +8,8 @@ char_width = 3
 char_height = 4
 char_spacing = 1
 char_color = settings.PATTERNCOLOR
-x_offset = 183
-y_offset = 220
+x_offset = 188 #183
+y_offset = 230 #220
 #shift routine
 def shift(shift_x,shift_y,array):
     angle = - math.pi / 2

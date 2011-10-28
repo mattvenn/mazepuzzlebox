@@ -107,15 +107,16 @@ def make_pieces( t ):
     print "using thickness %f" % thickness
     d=sdxf.Drawing()
     #drawRef()
-    drawHinge(200,40)
-    drawHinge(225,40)
+    drawHinge(205,40)
+    drawHinge(230,40)
     drawCatch(60,40)
-    drawLidCatchSlot(boxLength*1,boxWidth*3)
+    spacing = 5
+    drawLidCatchSlot((boxLength+spacing)*1,(boxWidth+spacing)*3)
     drawLowerLidCatchSlot(boxLength*0,0)
     for col in range(2):
         for row in range(4):
             if (row == 3 and col == 1) or (row == 0 and col == 0):
-                drawHingeSlotLid(boxLength*col,boxWidth*row)
+                drawHingeSlotLid((boxLength+spacing)*col,(boxWidth+spacing)*row)
             else:
-                drawHingeSlot(boxLength*col,boxWidth*row)
+                drawHingeSlot((boxLength+spacing)*col,(boxWidth+spacing)*row)
     d.saveas(dxfdir+'pieces.dxf')
