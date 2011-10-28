@@ -1,0 +1,24 @@
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+    <input type="hidden" name="item_number" value="{{ box.id }}">
+    <input type="hidden" name="cmd" value="_xclick">
+    <input type="hidden" name="business" value="paypal@mattvenn.net">
+    <input type="hidden" name="lc" value="GB">
+    <input type="hidden" name="item_name" value="mazepuzzlebox built">
+    <input type="hidden" name="button_subtype" value="services">
+    <input type="hidden" name="no_note" value="0">
+    <input type="hidden" name="currency_code" value="GBP">
+    <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynowCC_LG.gif:NonHostedGuest">
+    <input type="hidden" name="on0" value="shipping">
+    Shipping:
+    <select name="os0">
+        <option value="UK">UK £37</option>
+        <option value="worldwide">worldwide £38</option>
+    </select>
+    <input type="hidden" name="option_select0" value="UK">
+    <input type="hidden" name="option_amount0" value="37">
+    <input type="hidden" name="option_select1" value="worldwide">
+    <input type="hidden" name="option_amount1" value="38">
+    <input type="hidden" name="option_index" value="0">
+    <input type="image" src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal — The safer, easier way to pay online.">
+    <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+</form>
