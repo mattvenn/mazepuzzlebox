@@ -4,7 +4,13 @@ import sys
 from django.conf import settings
 dxfdir=settings.ROOT_DIR + "mazepuzzlebox/DXF/processDXF/"
 
-laserBurnGap = 0.15 #depends on laser cutter
+laserBurnGap = 0.16 #depends on laser cutter
+"""
+0.07 for smooth
+0.11 for snug
+0.14 for push fit
+0.16 for tight fit
+"""
 boxWidth = 100
 boxLength = 140
 #if hinges don't fit in then adjust this, lower == larger
@@ -60,6 +66,41 @@ def drawLowerLidCatchSlot(x,y):
     d.append(sdxf.LwPolyLine(points=linePoints,flag=1,color=cutColor)) 
     #d.append(sdxf.Line(points=linePoints,color=cutColor)) 
 
+def frange(start, end=None, inc=None):
+    "A range function, that does accept float increments..."
+
+    if end == None:
+        end = start + 0.0
+        start = 0.0
+
+    if inc == None:
+        inc = 1.0
+
+    L = []
+    while 1:
+        next = start + len(L) * inc
+        if inc > 0 and next >= end:
+            break
+        elif inc < 0 and next <= end:
+            break
+        L.append(next)
+        
+    return L
+def testHoleSize( t ):
+    global d,thickness
+    thickness = t
+    print "using thickness %f" % thickness
+    d=sdxf.Drawing()
+    startpoint = 0
+    for i in frange(0.00,0.20 ,0.01 ):
+        global laserBurnGap
+        laserBurnGap = i
+        print laserBurnGap
+        startpoint = startpoint +10 
+        drawLowerLidCatchSlot(startpoint,0)
+
+    d.saveas(dxfdir+'pieces.dxf')
+
 def make_pieces( t ):
     global d, thickness
     thickness = t
@@ -73,7 +114,7 @@ def make_pieces( t ):
     drawLowerLidCatchSlot(boxLength*0,0)
     for col in range(2):
         for row in range(4):
-            if (row == 3 and col == 1) or (row == 0 and col == 1):
+            if (row == 3 and col == 1) or (row == 0 and col == 0):
                 drawHingeSlotLid(boxLength*col,boxWidth*row)
             else:
                 drawHingeSlot(boxLength*col,boxWidth*row)
