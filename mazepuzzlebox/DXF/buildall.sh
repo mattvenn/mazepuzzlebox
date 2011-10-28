@@ -3,5 +3,5 @@
 export DJANGO_SETTINGS_MODULE=mazepuzzlebox.settings
 export PYTHONPATH=~/work/python/mazepuzzlebox
 
-cd ~/work/python/mazepuzzlebox/DXF/
+cd ~/work/python/mazepuzzlebox/mazepuzzlebox/DXF/
 python buildall.py
