@@ -26,16 +26,16 @@ def drawRef():
     d.append(sdxf.Line(points=linePoints,color=cutColor))
 
 def drawHinge(x,y):
-    d.append(sdxf.Circle(center=(x+10,y+thickness * 5.5),radius=2,color=cutColor))
-    d.append(sdxf.Arc(center=(x+10,y+thickness * 8 - 10),radius=10,startAngle=0,endAngle=180,color=cutColor))
-    linePoints = [(x+0,y+thickness * 8 - 10 ),(x+0,y+0),(x+20,y+0),(x+20,y+thickness * 8 - 10)]
+    d.append(sdxf.Circle(center=(x+10,y+thickness * 4.5),radius=2-laserBurnGap,color=cutColor))
+    d.append(sdxf.Arc(center=(x+10,y+thickness * 7 - 10),radius=10,startAngle=0,endAngle=180,color=cutColor))
+    linePoints = [(x+0,y+thickness * 7 - 10 ),(x+0,y-2*laserBurnGap),(x+20,y-2*laserBurnGap),(x+20,y+thickness * 7 - 10)]
     d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor)) 
 
 def drawCatch(x,y):
     notchDepth = 3
-    linePoints = [(x+0,y+0),(x+30,y+0),(x+30,y+thickness + laserBurnGap ),(x+20+laserBurnGap,y+thickness + laserBurnGap ),(x+20+laserBurnGap,y+thickness * 7 + laserBurnGap ),(x+10-laserBurnGap,y+thickness * 7 + laserBurnGap ),
+    linePoints = [(x+0,y+0),(x+30,y+0),(x+30,y+thickness + laserBurnGap ),(x+20+laserBurnGap,y+thickness + laserBurnGap ),(x+20+laserBurnGap,y+thickness * 6 + laserBurnGap ),(x+10-laserBurnGap,y+thickness * 6 + laserBurnGap ),
     #notch
-    (x+10-laserBurnGap,y+thickness * 6 - laserBurnGap + notchCorrection),(x+10 + notchDepth,y+ thickness * 6 - laserBurnGap + notchCorrection),(x+10 + notchDepth,y+ thickness * 5 + notchCorrection),(x+10-laserBurnGap, y+thickness * 5 +notchCorrection),
+    (x+10-laserBurnGap,y+thickness * 5 - laserBurnGap + notchCorrection),(x+10 + notchDepth,y+ thickness * 5 - laserBurnGap + notchCorrection),(x+10 + notchDepth,y+ thickness * 4 + notchCorrection),(x+10-laserBurnGap, y+thickness * 4 +notchCorrection),
     #finish
     (x+10-laserBurnGap,y+thickness + laserBurnGap ),(x+0,y+ thickness + laserBurnGap),
     ]
@@ -111,12 +111,14 @@ def make_pieces( t ):
     drawHinge(230,40)
     drawCatch(60,40)
     spacing = 5
-    drawLidCatchSlot((boxLength+spacing)*1,(boxWidth+spacing)*3)
-    drawLowerLidCatchSlot(boxLength*0,0)
+    drawLidCatchSlot(0,0)
+    #drawLowerLidCatchSlot(boxLength*0,0)
     for col in range(2):
         for row in range(4):
-            if (row == 3 and col == 1) or (row == 0 and col == 0):
+            if (row == 3 and col == 1):
+                None
+            elif (row == 0 and col == 0):
                 drawHingeSlotLid((boxLength+spacing)*col,(boxWidth+spacing)*row)
-            else:
+            else :
                 drawHingeSlot((boxLength+spacing)*col,(boxWidth+spacing)*row)
     d.saveas(dxfdir+'pieces.dxf')
