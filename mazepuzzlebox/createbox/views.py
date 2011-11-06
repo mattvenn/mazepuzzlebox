@@ -15,10 +15,11 @@ import DXF.drawMaze
 import DXF.make_id
 import DXF.make_pieces
 import DXF.joinDXF
+import RSS
 
 def index(request):
     latest_box_list = Box.objects.all().order_by('-pub_date')
-    paginator = Paginator(latest_box_list, 25)
+    paginator = Paginator(latest_box_list, 10)
     page = request.GET.get('page')
     try:
         boxes = paginator.page(page)
@@ -30,7 +31,9 @@ def index(request):
     except EmptyPage:
         # If page is out of range (e.g. 9999), deliver last page of results.
         boxes = paginator.page(paginator.num_pages)
-    return render_to_response('index.html', { 'boxes': boxes, })
+
+    latest_news = RSS.getLatestNews()
+    return render_to_response('index.html', { 'boxes': boxes, 'news': latest_news })
 
 def details(request, id):
     try:
