@@ -53,11 +53,11 @@ def details(request, id):
     except ValueError:
         err_msg = "'%s' isn't a number" % thickness
         logging.warn(err_msg)
-        return render_to_response('detail.html', { 'box':box, 'error_message': err_msg, 'maze': box.htmlMaze() }, context_instance=RequestContext(request))
+        return render_to_response('detail.html', { 'box':box, 'error_message': err_msg, 'maze': box.htmlMaze(), 'version' : settings.DXFVERSION }, context_instance=RequestContext(request))
     if float(thickness) > 8 or float(thickness) < 3:
         err_msg = "thickness needs to be between 3 and 8mm"
         logging.warn(err_msg)
-        return render_to_response('detail.html', { 'box':box, 'error_message': err_msg, 'maze': box.htmlMaze() }, context_instance=RequestContext(request))
+        return render_to_response('detail.html', { 'box':box, 'error_message': err_msg, 'maze': box.htmlMaze(), 'version' : settings.DXFVERSION }, context_instance=RequestContext(request))
 
     #make the DXF
     #TODO better error handling
@@ -69,7 +69,7 @@ def details(request, id):
     except Exception as e:
         err_msg = "error making DXF: ", e.args
         logging.error(err_msg)
-        return render_to_response('detail.html', { 'box':box, 'error_message': err_msg, 'maze': box.htmlMaze() }, context_instance=RequestContext(request))
+        return render_to_response('detail.html', { 'box':box, 'error_message': err_msg, 'maze': box.htmlMaze(), 'version' : settings.DXFVERSION }, context_instance=RequestContext(request))
 
     link = "/boxes/boxmaze_%i.dxf" % box.id
     return render_to_response('detail.html', {'box': box, 'plans' : link, 'thickness' : thickness, 'maze': box.htmlMaze(), 'version' : settings.DXFVERSION },
