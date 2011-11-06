@@ -45,3 +45,20 @@ td.indexTable
 vertical-align: top;
 width: 400px;
 }
+
+a.news { }
+p.news { font-size:10pt; 
+   margin-right: 10px }
+h3.news, h3.latestboxes {
+    font-weight: bold;
+    font-size: 12pt; 
+    margin-bottom: 5px;
+    }
+
+p.intro {
+    font-weight: bold;
+    margin-bottom: 0px;
+    }
+*.pagination, a.latestboxes { font-size: 10pt; }
+
+    

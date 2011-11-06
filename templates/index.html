@@ -2,35 +2,41 @@
 {% block title %}index of maze puzzle boxes{% endblock %}
 {% block content %}
 
-<p>
+<p class="intro">
 <a href="http://www.youtube.com/watch?v=6EqoSPFPsjg&feature=player_embedded">watch the video</a>, <a href="/create">create your own box</a> or <a href="http://www.instructables.com/id/maze-puzzle-box/">read the instructions</a>
 </p>
 <table class="indexTable">
     <tr>
     <td class="indexTable">
+        
+        {% if news %}
+            <h3 class="news">Latest news</h3>
+            {% for story in news %}
+                <a class="news" href="{{ story.url }}">{{ story.title }}</a>
+                <p class="news">{{ story.summary }}</p>
+            {% endfor %}
+        {% endif %}
+        <a href="http://www.mattvenn.net/tag/mazepuzzlebox/">older stories</a>
+        <hr width=90%>
         {% if boxes %}
-            <p>Latest boxes: </p>
+            <h3 class="latestboxes">Latest boxes</h3>
             <ul>
             {% for box in boxes.object_list %}
-                <li><a href="/{{ box.id }}">{{box.id}} : {{ box.pub_date }}</a></li>
+                <li><a class="latestboxes" href="/{{ box.id }}">{{box.id}} : {{ box.pub_date }}</a></li>
             {% endfor %}
             </ul>
         {% endif %}
 
         <div class="pagination">
-            <span class="step-links">
                 {% if boxes.has_previous %}
                     <a href="?page={{ boxes.previous_page_number }}">previous</a>
                 {% endif %}
 
-                <span class="current">
                     Page {{ boxes.number }} of {{ boxes.paginator.num_pages }}.
-                </span>
 
                 {% if boxes.has_next %}
                     <a href="?page={{ boxes.next_page_number }}">next</a>
                 {% endif %}
-            </span>
         </div>
 
         </td>
