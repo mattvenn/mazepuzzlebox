@@ -28,18 +28,15 @@
 </ul>
 <hr>
 {% if version == box.version %}
-<table class="paypalTable">
-    <tr>
-    <th class="paypalTable">Buy the complete box</td>
-    <th class="paypalTable">Buy just the parts</td>
+    <h3>Buy the complete box</h3>
+    {% include "paypal_built.html" %}
+    <hr>
+    <h3>Buy the all the parts to make it yourself</h3>
+    {% include "paypal_parts.html" %}
     </tr>
-    <tr>
-    <td class="paypalTable">{% include "paypal_built.html" %}</td>
-    <td class="paypalTable">{% include "paypal_parts.html" %}</td>
-    </tr>
-</table>
 <hr>
-<p>To generate the plans for this box, enter your material thickness in mm:</p>
+<h3>Cut the parts yourself</h3>
+<p>To generate the DXF plans for this box, enter your material thickness in mm:</p>
 <form action="/{{ box.id }}" method="post">
 {% csrf_token %}
     <input type="text" name="thickness" />
