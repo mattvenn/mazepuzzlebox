@@ -92,11 +92,13 @@ class MazeDesigner
         cells.each (i, el) =>
             cell = $(el)
             [x, y] = @coords(cell)
-
+            #if x == 15 then console.log(cell.attr('class'))
             switch cell.attr('class')
                 when undefined then s = 0
                 when '' then s = 0
                 when 'gone' then s = 1
+                #deal with multi classes in a bad way!
+                when 'gone no-go' then s = 1
                 when 'no-go' then s = 'X'
                 when 'start' then s = 'S'
                 when 'end' then s = 'E'
