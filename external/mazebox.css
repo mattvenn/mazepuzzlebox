@@ -7,10 +7,17 @@ td {
 
 td.no-go {
     border: none;
+
 }
 
-td.start, td.end {
-    background-color: blue;
+td.start {
+    background-image:url('/external/circle.png');
+    background-repeat:no-repeat;
+}
+
+td.end {
+    background-image:url('/external/cross.png');
+    background-repeat:no-repeat;
 }
 
 .thinking {
