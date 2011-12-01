@@ -5,10 +5,10 @@ from django.conf import settings
 
 #TODO
 
-startX = 2
-startY = 4
-endX = 15
-endY = 5
+endX = 2
+endY = 4
+startX = 15
+startY = 5
 noGoStartX = 4
 noGoStartY = 2
 noGoEndX = 9
