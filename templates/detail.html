@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}box details{% endblock %}
+{% block title %}box {{ box.id }} details{% endblock %}
 {% block extrahead %}
     <link href="/external/mazebox.css" rel="stylesheet" type="text/css" /> 
 {% endblock %}
@@ -23,8 +23,10 @@
 <ul>
 <li> id: {{ box.id }} </li>
 <li> date created: {{ box.pub_date }} </li>
+<!--
 <li> box DXF version : {{ box.version }} </li>
 <li> current DXF version : {{ version }} </li>
+-->
 </ul>
 <hr>
 {% if version == box.version %}
