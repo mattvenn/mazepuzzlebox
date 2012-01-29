@@ -23,4 +23,4 @@ def getLatestNews():
     
             ret.append( { 'url' : url, 'summary' : summary, 'title' : title , 'date' : datepub } )
 
-    return ret[0:2]
+    return ret[0:3]
