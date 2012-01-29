@@ -1,6 +1,9 @@
+#border {
+    width:810px;
+	margin:0px auto;
+    background: #EEE;
+    }
 body { 
-  background:#FFF; 
-  padding:10px;
   font-family: sans-serif;
 }
 
@@ -12,7 +15,7 @@ body {
 
 h1, #header
 {
-   font-size:14pt;
+   font-size:20pt;
    font-style:normal;
    font-weight:bold;
 }
@@ -46,6 +49,10 @@ vertical-align: top;
 width: 400px;
 }
 
+#createLink
+{
+    font-size:16pt;
+}
 a.news { }
 p.news { font-size:10pt; 
    margin-right: 10px }

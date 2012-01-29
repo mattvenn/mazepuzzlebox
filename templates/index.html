@@ -1,14 +1,16 @@
 {% extends "base.html" %}
-{% block title %}index of maze puzzle boxes{% endblock %}
+{% block title %}maze puzzle box{% endblock %}
 {% block content %}
 
-<p class="intro">
-<a href="http://www.youtube.com/watch?v=6EqoSPFPsjg&feature=player_embedded">watch the video</a>, <a href="/create">create your own box</a> or <a href="http://www.instructables.com/id/maze-puzzle-box/">read the instructions</a>
-</p>
 <table class="indexTable">
     <tr>
+    <td colspan="2" class="indexTable">
+        <div id="createLink">Watch the video, then <a href="/create">create your own box!</a>
+    <iframe width="800" height="437" src="http://www.youtube.com/embed/HTdaDZDc90g?rel=0" frameborder="0" allowfullscreen></iframe>
+    </td>
+    </tr>
+    <tr>
     <td class="indexTable">
-        
         {% if news %}
             <h3 class="news">Latest news</h3>
             {% for story in news %}
@@ -17,7 +19,8 @@
             {% endfor %}
         {% endif %}
         <a href="http://www.mattvenn.net/tag/mazepuzzlebox/">older stories</a>
-        <hr width=90%>
+    </td>
+    <td>
         {% if boxes %}
             <h3 class="latestboxes">Latest boxes</h3>
             <ul>
@@ -39,9 +42,6 @@
                 {% endif %}
         </div>
 
-        </td>
-        <td>
-<a href="http://www.flickr.com/photos/matthewvenn/5536665535/" title="maze puzzle box open by matthewvenn, on Flickr"><img src="http://farm6.static.flickr.com/5299/5536665535_c28b13c7ea.jpg" width="369" height="500" alt="maze puzzle box open"></a>
         </td>
     </tr>
 </table>
