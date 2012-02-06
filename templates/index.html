@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% block title %}maze puzzle box{% endblock %}
+{% block extrahead %}
+    <link href="/external/mazebox.css" rel="stylesheet" type="text/css" /> 
+{% endblock %}
 {% block content %}
 
 <table class="indexTable">
@@ -9,25 +12,28 @@
     <iframe width="800" height="437" src="http://www.youtube.com/embed/HTdaDZDc90g?rel=0" frameborder="0" allowfullscreen></iframe>
     </td>
     </tr>
+    <!-- latest boxes row -->
     <tr>
-    <td class="indexTable">
-        {% if news %}
-            <h3 class="news">Latest news</h3>
-            {% for story in news %}
-                <a class="news" href="{{ story.url }}">{{ story.title }}</a>
-                <p class="news">{{ story.summary }}</p>
-            {% endfor %}
-        {% endif %}
-        <a href="http://www.mattvenn.net/tag/mazepuzzlebox/">older stories</a>
-    </td>
-    <td>
+    <td colspan="2" class="indexTable">
         {% if boxes %}
-            <h3 class="latestboxes">Latest boxes</h3>
-            <ul>
+            <h3 class="latestboxes">Latest maze designs</h3>
             {% for box in boxes.object_list %}
-                <li><a class="latestboxes" href="/{{ box.id }}">{{box.id}} : {{ box.pub_date }}</a></li>
+                <a class="latestboxes" href="/{{ box.id }}">
+                    <div class="minimaze">
+                    <table>
+                    <tbody>
+                    {% for rows in box.htmlMaze %}
+                        <tr> 
+                        {% for cell in rows %}
+                            <td class="{{ cell }}"></td>
+                        {% endfor %}
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                    </table>
+                    </div>
+                </a> 
             {% endfor %}
-            </ul>
         {% endif %}
 
         <div class="pagination">
@@ -43,6 +49,19 @@
         </div>
 
         </td>
+    </tr>
+    <!-- news row -->
+    <tr>
+    <td colspan="2" class="indexTable">
+        {% if news %}
+            <h3 class="news">Latest news</h3>
+            {% for story in news %}
+                <a class="news" href="{{ story.url }}">{{ story.title }}</a>
+                <p class="news">{{ story.summary }}</p>
+            {% endfor %}
+        {% endif %}
+        <a href="http://www.mattvenn.net/tag/mazepuzzlebox/">older stories</a>
+    </td>
     </tr>
 </table>
 {% endblock %}

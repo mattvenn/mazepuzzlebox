@@ -19,7 +19,9 @@ import RSS
 
 def index(request):
     latest_box_list = Box.objects.all().order_by('-pub_date')
-    paginator = Paginator(latest_box_list, 10)
+    for box in latest_box_list:
+        box.htmlMaze
+    paginator = Paginator(latest_box_list, 5)
     page = request.GET.get('page')
     try:
         boxes = paginator.page(page)

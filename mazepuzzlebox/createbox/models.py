@@ -24,6 +24,7 @@ class Box(models.Model):
     maze = models.CharField(max_length=400)
     version = models.IntegerField('version')
 
+    
     def clean(self):
         self.checkJSON(self.maze)
 
@@ -51,6 +52,8 @@ class Box(models.Model):
                 if x == endX and y == endY:
                     outmaze[y][x] = 'end'
                 
+        #store the maze for later use
+        self.htmlMaze = outmaze
         return outmaze
 
     def checkJSON(self,jstr):

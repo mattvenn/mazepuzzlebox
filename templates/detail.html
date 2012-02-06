@@ -5,8 +5,7 @@
 {% endblock %}
 {% block content %}
 {% if box %}
-<!-- <p> json maze {{ box.maze }} </p> -->
-    <div id="maze">
+    <div class="maze">
     <table>
     <tbody>
     {% for rows in maze %}
@@ -20,6 +19,10 @@
     </table>
     </div>
 {% endif %}
+
+
+
+
 <ul>
 <li> id: {{ box.id }} </li>
 <li> date created: {{ box.pub_date }} </li>

@@ -1,23 +1,26 @@
 /*maze designer stuff*/
-td {
+div.maze td {
     border: 1px solid white;
     width: 40px;
     height: 40px;
 }
 
-td.no-go {
+div.maze td.no-go {
     border: none;
-
 }
 
-td.start {
+div.maze td.start {
     background-image:url('/external/circle.png');
     background-repeat:no-repeat;
 }
 
-td.end {
+div.maze td.end {
     background-image:url('/external/cross.png');
     background-repeat:no-repeat;
+}
+
+div.minimaze td.start,td.end{
+    background: red;
 }
 
 .thinking {
@@ -32,11 +35,32 @@ td.end {
     color: green;
 }
 
-td.gone {
+
+div.maze td.gone {
     background-color: white;
 }
 
-#maze {
+div.minimaze td.gone {
+    background-color: white;
+}
+
+div.minimaze table{
+    border: 1px solid white;
+}
+div.minimaze td{
+    border: 0px; // solid white;
+    width: 5px;
+    height: 5px;
+}
+
+div.minimaze{
+    display: inline-block;
+    padding: 2px;
+    background-color: black;
+    margin: 2px;
+}
+
+div.maze {
     display: inline-block;
     padding: 32px;
     background-color: black;
