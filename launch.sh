@@ -1,4 +1,5 @@
 #!/bin/bash
+#merge test
 cd /var/www/
 sudo rm -rf mazepuzzlebox.old/
 sudo mv mazepuzzlebox/ mazepuzzlebox.old
