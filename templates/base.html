@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{% block title %}maze puzzle box{% endblock %}</title>
-    <meta name="description" content="design your own unique maze puzzle box!" />
+    <title>{% block title %}Maze Puzzle Box{% endblock %}</title>
+    <meta name="description" content="Design your own unique Maze Puzzle Box!" />
     <meta name="keywords" content="maze, puzzle, box, puzzle box, laser cut, unique"/>
     <link href="/external/style.css" rel="stylesheet" type="text/css" />
+	<link rel="icon" type="image/png" href="/external/images/favicon.png">
+
     {% block extrahead %}{% endblock %}
     <script type="text/javascript">
 
@@ -19,35 +21,59 @@
       })();
 
     </script>
+
+	<script type="text/javascript" src="http://use.typekit.com/qss7vcm.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	
 </head>
 <body>
-    <div id="border">
-    <div id="header">
-    <a href="/">MazePuzzleBox.co.uk</a>
-<!-- AddThis Button BEGIN -->
-<div class="addthis_toolbox addthis_default_style ">
-<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
-<a class="addthis_button_tweet"></a>
-<a class="addthis_counter addthis_pill_style"></a>
-</div>
-<script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script>
-<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4e0b9b45398260f3"></script>
-<!-- AddThis Button END -->
-    </div>
-    <hr>
+    <div id="wrapper">
+	
+<div id="header" class="clearfix">
+    		
+	<div id="logo">
+		<a href="http://www.mazepuzzlebox.co.uk"><em>MazePuzzleBox.co.uk</em></a>
+	</div>
+	<div id="box"><!--<a href="/create"><em>box</em></a>--></div>
+	<div id="social">
+		<p>Spread the Word!</p>
+		<!-- AddThis Button BEGIN -->
+		<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+		<a class="addthis_button_preferred_1"></a>
+		<a class="addthis_button_preferred_2"></a>
+		<!--<a class="addthis_button_preferred_3"></a>
+		<a class="addthis_button_preferred_4"></a>-->
+		<a class="addthis_button_compact"></a>
+		<a class="addthis_counter addthis_bubble_style"></a>
+		</div>
+		<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f43944d019b944d"></script>
+		<!-- AddThis Button END -->
+	</div>
+
+	<div id ="nav">
+		<ul>
+			<li><a href="/">home.</a></li>
+			<li><a href="/about">about.</a></li>
+			<li><a href="/create">create.</a></li>
+			<li><a href="/links">links.</a></li>
+			<li><a href="/contact">contact.</a></li>
+		</ul>
+	</div>
+	
+</div><!-- END HEADER-->
+			
         {% if error_message %}
-            <div id="error">Error: {{ error_message }}</div>
+            <div id="error" class="clearfix">Error: {{ error_message }}</div>
         {% endif %}
-    <div id="content">
+
         {% block content %}{% endblock %}
-    </div>
-    <hr>
-    <div id="footer">
+
+    <div id="footer" class="clearfix">
         {% block footer %}
-            <a href="/">Home</a> | <a href="/create">Create</a> | <a href="about">About</a> | <a href="/links">Links</a>
+            <a href="/">home.</a> &nbsp; <a href="about">about.</a> &nbsp; <a href="/create">create.</a> &nbsp; <a href="/links">links.</a> &nbsp; <a href="contact">contact.</a>
+<div id="footer-logo"></div>
         {% endblock %}
     </div>
-<br>
-</div>
+</div><!-- END WRAPPER-->
 </body>
 </html>
