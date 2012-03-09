@@ -12,9 +12,11 @@ from createbox.models import Box
 import logging
 #dxf stuff
 import DXF.drawMaze
+import DXF.drawMazeSVG
 import DXF.make_id
 import DXF.make_pieces
 import DXF.joinDXF
+import DXF.buildInstructions
 import RSS
 
 def index(request):
@@ -66,16 +68,19 @@ def details(request, id):
     #TODO better error handling
     try:
         DXF.drawMaze.drawMaze( box.maze,box )
+        DXF.drawMazeSVG.drawMaze( box.maze,box )
         DXF.make_pieces.make_pieces(float(thickness))
         DXF.make_id.make_id(box.id)
         DXF.joinDXF.joinDXF(box.id)
+        DXF.buildInstructions.buildInstructions(box.id)
     except Exception as e:
         err_msg = "error making DXF: ", e.args
         logging.error(err_msg)
         return render_to_response('detail.html', { 'box':box, 'error_message': err_msg, 'maze': box.htmlMaze(), 'version' : settings.DXFVERSION }, context_instance=RequestContext(request))
 
     link = "/boxes/boxmaze_%i.dxf" % box.id
-    return render_to_response('detail.html', {'box': box, 'plans' : link, 'thickness' : thickness, 'maze': box.htmlMaze(), 'version' : settings.DXFVERSION },
+    instructionsLink = "/boxes/instructions_%i.png" % box.id
+    return render_to_response('detail.html', {'box': box, 'instructions' : instructionsLink,  'plans' : link, 'thickness' : thickness, 'maze': box.htmlMaze(), 'version' : settings.DXFVERSION },
         context_instance=RequestContext(request))
     
 
