@@ -7,7 +7,7 @@ dxfdir=settings.ROOT_DIR + "mazepuzzlebox/DXF/processDXF/"
 staticSVGdir = settings.ROOT_DIR + "mazepuzzlebox/DXF/staticSVG/"
 def buildInstructions(boxid):
 
-    img =  cairo.ImageSurface(cairo.FORMAT_ARGB32, 336,500)
+    img =  cairo.ImageSurface(cairo.FORMAT_ARGB32, 356,498)
 
     ctx = cairo.Context(img)
     
