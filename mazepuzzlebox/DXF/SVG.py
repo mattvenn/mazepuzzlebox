@@ -23,6 +23,7 @@ class Drawing():
         self.dwg = svgwrite.Drawing(filename=name, debug=True)
         self.lines = self.dwg.add(self.dwg.g(id='lines', stroke='black', fill='none', stroke_width='0.1mm'))
         self.constructionlines = self.dwg.add(self.dwg.g(id='constructionlines', stroke='red', opacity='0.50'))
+        self.mazelines = self.dwg.add(self.dwg.g(id='mazelines', stroke='black', stroke_width='0.3mm'))
 
     def saveas(self):
         self.dwg.save()
@@ -33,6 +34,10 @@ class Drawing():
     #hack to put in a different group
     def CLine(self,points):
         self.constructionlines.add(svgwrite.shapes.Polyline(convArrayTupleCM(points)))
+
+    #hack to put in a different group
+    def MLine(self,points):
+        self.mazelines.add(svgwrite.shapes.Polyline(convArrayTupleCM(points)))
 
     def Circle(self,cent,radius):
         self.lines.add(self.dwg.circle(center=convTupleCM(cent), r=radius*cm ))
