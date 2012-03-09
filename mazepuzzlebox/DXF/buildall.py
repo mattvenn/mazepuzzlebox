@@ -3,13 +3,19 @@ import drawMaze
 import make_id
 import make_pieces
 import joinDXF
-import Box
-#from mazepuzzlebox.createbox.models import Box
+import drawMazeSVG
+#import Box
+from mazepuzzlebox.createbox.models import Box
 #jstr = '[[1,1,1,1,0,0],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,0,0,1,1,1],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,0,0,1,1,1],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,1,1,1,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]'
 id = 37
 thickness=3.76
-#make_pieces.testHoleSize(thickness)
-box = Box.objects.get(pk=id)
+try:
+    box = Box.objects.get(pk=id)
+except:
+    print "first instantiate failed... why?"
+    box = Box.objects.get(pk=id)
+drawMazeSVG.drawMaze( box.maze, box )
 drawMaze.drawMaze( box.maze,box )
-#DXF.make_id.make_id(box.id)
-#DXF.joinDXF.joinDXF(box.id)
+make_pieces.make_pieces(thickness)
+make_id.make_id(box.id)
+joinDXF.joinDXF(box.id)
