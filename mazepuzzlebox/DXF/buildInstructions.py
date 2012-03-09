@@ -1,14 +1,23 @@
 import cairo
 import rsvg
 
-img =  cairo.ImageSurface(cairo.FORMAT_ARGB32, 336,500)
+from django.conf import settings
+outdir=settings.ROOT_DIR + "boxDXFs"
+dxfdir=settings.ROOT_DIR + "mazepuzzlebox/DXF/processDXF/"
+staticSVGdir = settings.ROOT_DIR + "mazepuzzlebox/DXF/staticSVG/"
+def buildInstructions(boxid):
 
-ctx = cairo.Context(img)
+    img =  cairo.ImageSurface(cairo.FORMAT_ARGB32, 336,500)
 
-handler= rsvg.Handle("staticSVG/instructions.svg")
+    ctx = cairo.Context(img)
+    
+    #static instructions file
+    handler= rsvg.Handle(staticSVGdir + "instructions.svg")
+    handler.render_cairo(ctx)
 
-handler.render_cairo(ctx)
-handler= rsvg.Handle("processDXF/maze.svg")
-handler.render_cairo(ctx)
-
-img.write_to_png("processDXF/instructions.png")
+    #the maze
+    handler= rsvg.Handle(dxfdir + "maze.svg")
+    handler.render_cairo(ctx)
+    
+    #write them out
+    img.write_to_png(outdir + "/instructions_" + str(boxid) + ".png")
