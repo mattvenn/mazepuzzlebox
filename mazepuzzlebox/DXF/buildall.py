@@ -4,9 +4,9 @@ import make_id
 import make_pieces
 import joinDXF
 import drawMazeSVG
+import buildInstructions
 #import Box
 from mazepuzzlebox.createbox.models import Box
-#jstr = '[[1,1,1,1,0,0],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,0,0,1,1,1],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,0,0,1,1,1],[0,0,0,1,0,0],[0,0,0,1,0,0],[0,1,1,1,0,0],[0,0,0,0,0,0],[0,0,0,0,0,0]]'
 id = 37
 thickness=3.76
 try:
@@ -19,3 +19,4 @@ drawMaze.drawMaze( box.maze,box )
 make_pieces.make_pieces(thickness)
 make_id.make_id(box.id)
 joinDXF.joinDXF(box.id)
+buildInstructions.buildInstructions(box.id)
