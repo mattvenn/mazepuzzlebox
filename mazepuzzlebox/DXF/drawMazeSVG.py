@@ -48,7 +48,7 @@ class Cell():
 def endShape():
     global drawColor,linePoints
     #import pdb; pdb.set_trace()
-    d.Line(points=linePoints) 
+    d.MLine(points=linePoints) 
     linePoints = []
 
 def vertex(x,y):
@@ -127,7 +127,8 @@ def drawMaze( jstr,box ):
     matrix = json.loads( jstr )
     maze = [[Cell(x,y,matrix[x][y]) for y in range(yCells)] for x in range(xCells)]
 
+    #what are these units?!
     transX = 5
-    transY = 100 #190
+    transY = 103 #190
     drawDXFMaze()
     d.saveas()
