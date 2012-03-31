@@ -1,26 +1,35 @@
-import feedparser
-feed = 'http://www.mattvenn.net/feed/rss/?tag=mazepuzzlebox'
+import sys
+import shelve
+from feedcache import cache
 from datetime import date
+
+feed = 'http://www.mattvenn.net/feed/rss/?tag=mazepuzzlebox'
+
 def getLatestNews():
     ret = []
-    channels = feedparser.parse(feed)
-
+    storage = shelve.open('.feedcache' )
     url = ''
     summary = ''
     title = ''
     datepub = ''
-    for entry in channels.entries:
-        try:
-            url = unicode(entry.link, channels.encoding)
-            summary = unicode(entry.description, channels.encoding)
-            title = unicode(entry.title, channels.encoding)
-            #datepub = unicode(entry.date, channels.encoding)
-        except:
-            url = entry.link
-            summary = entry.description
-            title = entry.title
-            #datepub = entry.date
-    
-            ret.append( { 'url' : url, 'summary' : summary, 'title' : title , 'date' : datepub } )
+    try:
+        fc = cache.Cache(storage)
+        data = fc.fetch(feed)
+        for entry in data.entries:
+            try:
+                url = unicode(entry.link, channels.encoding)
+                summary = unicode(entry.description, channels.encoding)
+                title = unicode(entry.title, channels.encoding)
+                #datepub = unicode(entry.date, channels.encoding)
+            except:
+                url = entry.link
+                summary = entry.description
+                title = entry.title
+                #datepub = entry.date
+        
+                ret.append( { 'url' : url, 'summary' : summary, 'title' : title , 'date' : datepub } )
+        
+    finally:
+        storage.close()
 
-    return ret[0:3]
+    return ret[0:4]
