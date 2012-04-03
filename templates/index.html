@@ -8,11 +8,11 @@
 	<div id="media">   
     	<iframe width="600" height="336" src="http://www.youtube.com/v/HTdaDZDc90g&autohide=1&showinfo=0" frameborder="0" allowfullscreen></iframe>
 	</div>
-	<div id="media-text"><a href="/create"><h1>Watch the video,</h1><p>then create your own box!</p><br><p>I love it when I get to the stage of a project where I can finesse it! The maze puzzle box is now in its 15th iteration after a year's progressive design improvements. In this update I've improved the looks by removing all the visible cut marks on the top surface.</p><br><p>Click here for further details.</p></a></div>
+	<div id="media-text"><h1>Watch the video,</h1><p>then create your own box!</p><br><p>I love it when I get to the stage of a project where I can finesse it! The maze puzzle box is now in its 15th iteration after a year's progressive design improvements. In this update I've improved the looks by removing all the visible cut marks on the top surface.</p><br><a href="/create"><p>Click here for further details.</p></a></div>
 </div>
-<div id="content" class="clearfix">
+<div id="content" class="clearfix"><a name="latest-boxes"></a>
         {% if boxes %}
-            <h3>Latest maze designs</h3>
+            <h2>Latest maze designs.</h2>
             {% for box in boxes.object_list %}
                 <a class="latestboxes" href="/{{ box.id }}">
                     <div class="minimaze">
@@ -34,13 +34,13 @@
 
         <div class="pagination">
                 {% if boxes.has_previous %}
-                    <a href="?page={{ boxes.previous_page_number }}">previous</a>
+                    <a href="?page={{ boxes.previous_page_number }}#latest-boxes"> <<< View previous.</a>
                 {% endif %}
 
                     Page {{ boxes.number }} of {{ boxes.paginator.num_pages }}.
 
                 {% if boxes.has_next %}
-                    <a href="?page={{ boxes.next_page_number }}">next</a>
+                    <a href="?page={{ boxes.next_page_number }}#latest-boxes">View next >>></a>
                 {% endif %}
         </div>
 
@@ -50,13 +50,14 @@
     <tr>
     <td colspan="2" class="indexTable">
         {% if news %}
-            <h3>Latest news</h3>
+            <h1>Latest news.</h1>
             {% for story in news %}
-                <a class="news" href="{{ story.url }}">{{ story.title }}</a>
-                <p class="news">{{ story.summary }}</p>
+                <p class="news">{{ story.date }}</p>
+				<a class="news" href="{{ story.url }}">{{ story.title }}</a>
+                <p class="news">{{ story.summary }}</p><br>
             {% endfor %}
         {% endif %}
-        <a href="http://www.mattvenn.net/tag/mazepuzzlebox/">older stories</a>
+        <a href="http://www.mattvenn.net/tag/mazepuzzlebox/">View older stories >>></a>
     </td>
     </tr>
 </table>
