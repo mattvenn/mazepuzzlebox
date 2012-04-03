@@ -35,7 +35,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="1.0617069"
      inkscape:cx="177.79418"
-     inkscape:cy="343.38312"
+     inkscape:cy="259.52649"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -78,7 +78,7 @@
     </g>
     <g
        id="g4100"
-       transform="translate(190.63489,-21.653406)">
+       transform="translate(190.63489,-29.653406)">
       <g
          transform="matrix(1.25,0,0,-1.25,69.932508,376.55821)"
          id="g3017"
@@ -111,7 +111,7 @@
       </g>
     </g>
     <g
-       transform="matrix(1.25,0,0,-1.25,63.694264,843.32613)"
+       transform="matrix(1.25,0,0,-1.25,63.694264,835.32613)"
        style="display:inline"
        id="g3029">
       <g
@@ -181,12 +181,12 @@
     </g>
     <g
        id="g4108"
-       transform="translate(0,-30)">
+       transform="translate(0,-38)">
       <text
          id="text3932"
          y="482.81558"
          x="185.83344"
-         style="font-size:13px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;font-stretch:normal;font-variant:normal;line-height:115%"
+         style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:114.99999762%;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
          xml:space="preserve"
          sodipodi:linespacing="115%"><tspan
            y="482.81558"
@@ -194,51 +194,51 @@
            id="tspan3934"
            sodipodi:role="line">   Align this instruction card with the front of </tspan><tspan
            id="tspan3948"
-           y="497.81558"
+           y="497.76559"
            x="185.83344"
            sodipodi:role="line">the box.</tspan><tspan
            id="tspan3936"
-           y="512.81555"
+           y="512.71558"
            x="185.83344"
            sodipodi:role="line" /><tspan
            id="tspan3938"
-           y="527.81555"
+           y="527.66559"
            x="185.83344"
            sodipodi:role="line">   Shake the box towards the hinges, this</tspan><tspan
            id="tspan3950"
-           y="542.81555"
+           y="542.6156"
            x="185.83344"
            sodipodi:role="line">releases the ball from the magnet.</tspan><tspan
            id="tspan3940"
-           y="557.81555"
+           y="557.56555"
            x="185.83344"
            sodipodi:role="line" /><tspan
            id="tspan3942"
-           y="572.81555"
+           y="572.51556"
            x="185.83344"
            sodipodi:role="line">   Guide the ball through the maze from the</tspan><tspan
            id="tspan3952"
-           y="587.81555"
+           y="587.46558"
            x="185.83344"
-           sodipodi:role="line">circle to the cross.</tspan><tspan
+           sodipodi:role="line">cross to the circle.</tspan><tspan
            id="tspan3944"
-           y="602.81555"
+           y="602.41559"
            x="185.83344"
            sodipodi:role="line" /><tspan
            id="tspan3946"
-           y="617.81555"
+           y="617.3656"
            x="185.83344"
-           sodipodi:role="line">   Then press the button and the box will open.</tspan><tspan
+           sodipodi:role="line">   Press the button and the box will open!</tspan><tspan
            id="tspan3962"
-           y="632.81555"
+           y="632.31555"
            x="185.83344"
            sodipodi:role="line" /><tspan
            id="tspan3964"
-           y="647.81555"
+           y="647.26556"
            x="185.83344"
            sodipodi:role="line">   For more help, see the video at</tspan><tspan
            id="tspan3966"
-           y="662.81555"
+           y="662.21558"
            x="185.83344"
            sodipodi:role="line"> mazepuzzlebox.co.uk</tspan></text>
       <g
@@ -324,12 +324,12 @@
        xml:space="preserve"
        style="font-size:24px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Ubuntu;-inkscape-font-specification:Ubuntu"
        x="183.72144"
-       y="427.93887"
+       y="419.93887"
        id="text3045"
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3047"
          x="183.72144"
-         y="427.93887">Instructions.</tspan></text>
+         y="419.93887">Instructions.</tspan></text>
   </g>
 </svg>

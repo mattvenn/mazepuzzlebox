@@ -4,7 +4,12 @@ from SVG import *
 import math
 import sys
 from django.conf import settings
+import mazepuzzlebox.createbox.models 
 
+endX = mazepuzzlebox.createbox.models.endX
+endY = mazepuzzlebox.createbox.models.endY
+startX = mazepuzzlebox.createbox.models.startX
+startY = mazepuzzlebox.createbox.models.startY
 dxfdir=settings.ROOT_DIR + "mazepuzzlebox/DXF/processDXF/"
 passageWidth = 5
 linePoints = []
@@ -48,8 +53,41 @@ class Cell():
 def endShape():
     global drawColor,linePoints
     #import pdb; pdb.set_trace()
-    d.MLine(points=linePoints) 
+    d.idLine('mline',points=linePoints) 
     linePoints = []
+
+def drawStartAndEnd():
+    w = passageWidth
+    #start cross
+    vertex(startX*w,startY*w)
+    vertex(startX*w+w,startY*w+w)
+    endShape()
+    vertex(startX*w+w,startY*w)
+    vertex(startX*w,startY*w+w)
+    endShape()
+
+    #end circle
+    rad = w/2
+    #what the hell is this about?! #SVGBUST
+    rad *= 1.25
+    d.idCircle('line',(endX*w+rad+transX,endY*w+rad+transY),rad)
+
+def drawMazeOutline(x,y):
+    w = passageWidth
+    s = w / 2
+    vertex(0-s,0-s)
+    vertex(x*w+s,0-s)
+    endShape()
+    vertex(x*w+s,0-s)
+    vertex(x*w+s,y*w+s)
+    endShape()
+    vertex(x*w+s,y*w+s)
+    vertex(0-s,y*w+s)
+    endShape()
+    vertex(0-s,y*w+s)
+    vertex(0-s,0-s)
+    endShape()
+
 
 def vertex(x,y):
     #mirror
@@ -128,7 +166,10 @@ def drawMaze( jstr,box ):
     maze = [[Cell(x,y,matrix[x][y]) for y in range(yCells)] for x in range(xCells)]
 
     #what are these units?!
-    transX = 5
-    transY = 103 #190
+    #SVGBUST
+    transX = 10
+    transY = 102 #190
     drawDXFMaze()
+    drawStartAndEnd()
+    drawMazeOutline(xCells,yCells)
     d.saveas()

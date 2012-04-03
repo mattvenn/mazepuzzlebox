@@ -5,6 +5,7 @@ simple wrapper for svgwrite that replaces all the original sdxf calls from boxot
 """
     
 #I don't understand this magic number - and I can't get svgwrite to let me specify polylines with mm/cm
+#SVGBUST
 cm = 3.543307
 
 #helper routines to scale pixels to cm
@@ -21,32 +22,26 @@ def convTupleCM(point):
 class Drawing():
     def __init__(self,name):
         self.dwg = svgwrite.Drawing(filename=name, debug=True)
-        self.lines = self.dwg.add(self.dwg.g(id='lines', stroke='black', fill='none', stroke_width='0.1mm'))
-        self.constructionlines = self.dwg.add(self.dwg.g(id='constructionlines', stroke='red', opacity='0.50'))
-        self.mazelines = self.dwg.add(self.dwg.g(id='mazelines', stroke='black', stroke_width='0.3mm'))
+        self.styles = {}
+        self.styles['line'] = self.dwg.add(self.dwg.g(id='lines', stroke='black', fill='none', stroke_width='0.3mm'))
+        self.styles['cline']= self.dwg.add(self.dwg.g(id='constructionlines', stroke='red', opacity='0.50'))
+        self.styles['mline'] = self.dwg.add(self.dwg.g(id='mazelines', stroke='black', stroke_width='0.3mm'))
 
     def saveas(self):
         self.dwg.save()
 
-    def Line(self,points):
-        self.lines.add(svgwrite.shapes.Polyline(convArrayTupleCM(points)))
+    def idLine(self,id,points):
+        self.styles[id].add(svgwrite.shapes.Polyline(convArrayTupleCM(points)))
 
-    #hack to put in a different group
-    def CLine(self,points):
-        self.constructionlines.add(svgwrite.shapes.Polyline(convArrayTupleCM(points)))
+    def idCircle(self,id,cent,radius):
+        self.styles[id].add(self.dwg.circle(center=convTupleCM(cent), r=radius*cm ))
 
-    #hack to put in a different group
-    def MLine(self,points):
-        self.mazelines.add(svgwrite.shapes.Polyline(convArrayTupleCM(points)))
+    def idRectangle(self,id,point,width,height):
+        self.styles[id].add(self.dwg.rect(insert=convTupleCM(point),size=convTupleCM((width,height))))
 
-    def Circle(self,cent,radius):
-        self.lines.add(self.dwg.circle(center=convTupleCM(cent), r=radius*cm ))
-      
-    def Rectangle(self,point,width,height):
-        self.lines.add(self.dwg.rect(insert=convTupleCM(point),size=convTupleCM((width,height))))
+    def idText(self,id,text,point,height):
+        self.styles[id].add(svgwrite.text.Text(text,convTupleCM(point)))
 
-    def Text(self,text,point,height):
-        self.constructionlines.add(svgwrite.text.Text(text,convTupleCM(point)))
 """ 
 
 def basic_shapes(name):
