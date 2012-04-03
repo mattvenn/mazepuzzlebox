@@ -16,4 +16,5 @@ urlpatterns = patterns('',
     (r'^about',  direct_to_template, {'template': 'about.html'}),
     (r'^links',  direct_to_template, {'template': 'links.html'}),
     (r'^tips',  direct_to_template, {'template': 'tips.html'}),
+    (r'^contact',  direct_to_template, {'template': 'contact.html'}),
 )
