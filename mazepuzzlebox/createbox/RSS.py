@@ -14,8 +14,13 @@ def getLatestNews():
     title = ''
     datepub = ''
     try:
+        print "getting feeds..."
+        print ttl
+        print time.asctime()
         fc = cache.Cache(storage,timeToLiveSeconds=ttl)
         data = fc.fetch(feed)
+        print "done"
+        print time.asctime()
         for entry in data.entries:
             try:
                 url = unicode(entry.link, channels.encoding)
