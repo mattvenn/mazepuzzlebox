@@ -70,7 +70,7 @@ a:focus { outline: none;-moz-outline-style: none;}
 
 h1, h2, h3 { font-weight: bold; }
 h1, h2, h3, h4, h5, h6 {padding:0;margin:0;}
-h1 {font-size:35px; padding-bottom:3px;}
+h1 {font-size:35px; padding:10px 0 3px;}
 h2 {font-size:25px; padding-bottom:3px;}
 
 html, body { 
@@ -233,7 +233,9 @@ html, body {
 }
 #slider #media-text h1 {
 	font-size:30px;
+	padding-top:0px;
 }
+a.news {text-decoration:underline;}
 #footer {
 	background:#f90;
 	height:100px;
@@ -292,8 +294,8 @@ width: 400px;
 ----------------------------------*/
 #maze-text {
 	float:right;
-	width:281px;
-	height:198px;
+	width:280px;
+	height:200px;
 	background:#f90;
 	display:inline;
 	padding:20px 20px;

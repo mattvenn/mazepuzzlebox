@@ -2,7 +2,7 @@
 div.maze {
 	float:left;
     display: inline-block;
-    padding: 14px;
+    padding: 12px;
     background-color: black;
     margin: 20px 0 0;
 }
@@ -10,7 +10,7 @@ div.maze td {
     border: 2px solid black;
 	background-color:white;
     width: 32px;
-    height: 35px;
+    height: 32px;
 }
 div.maze td.no-go {
     border: none;
@@ -30,9 +30,8 @@ div.maze td.end {
 }
 div.minimaze{
     display: inline-block;
-    padding: 3px;
+    padding: 2px;
     background-color: black;
-    margin: 2px;
 }
 div.minimaze table{
     border: 0px solid white;
@@ -40,15 +39,15 @@ div.minimaze table{
 div.minimaze td{
     border: 1px solid black;
 	background:white;
-    width: 5px;
-    height: 5px;
+    width:9px;
+    height:9px;
 }
 div.minimaze td.start,td.end {
     background: red;
 }
 div.minimaze td.gone {
     background-color: #f90;
-	border: 2px solid black;
+	border: 1px solid black;
 }
 .thinking {
     color: #ccc;
