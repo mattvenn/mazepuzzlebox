@@ -12,6 +12,9 @@ div.maze td {
     width: 32px;
     height: 32px;
 }
+.table-cell {
+	height:32px; /* This sets a minimum height for one cell in each row to fix Firefox */
+} 
 div.maze td.no-go {
     border: none;
 	background-color:black;
@@ -42,8 +45,11 @@ div.minimaze td{
     width:9px;
     height:9px;
 }
-div.minimaze td.start,td.end {
-    background: red;
+div.minimaze td.start {
+    background-image:url('/external/images/o-mini.png');
+}
+div.minimaze td.end {
+    background-image:url('/external/images/x-mini.png');
 }
 div.minimaze td.gone {
     background-color: #f90;

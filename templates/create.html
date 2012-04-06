@@ -9,13 +9,14 @@
 {% endblock %}
 {% block content %}
 <div id="content" class="clearfix">
-
 <h1>Design your maze!</h1>
-<p>The ball starts at the circle, and you create a maze that leads to the cross, you need a continuous path and no unconnected blocks for the maze to work,here are some <a href="/tips.html">tips for designing your maze.</a></p>
+<p>Starting at the circle, create a path that leads to the cross. We've started you off below. In order for the maze to work, you need a <a href="/tips.html#continuous-path">continuous path</a> from circle to cross with no <a href="/tips.html#unconnected-blocks">unconnected blocks</a>.</p>
 <div class="maze" id="maze"> 
 <table> 
   <tbody> 
     <tr> 
+      <td></td>
+      <td></td>
       <td></td> 
       <td></td> 
       <td></td> 
@@ -29,9 +30,7 @@
       <td></td> 
       <td></td> 
       <td></td> 
-      <td></td> 
-      <td></td> 
-      <td class="gone no-go"></td> 
+      <td class="gone no-go"><div class="table-cell"></div></td> 
     </tr> 
     <tr> 
       <td></td> 
@@ -49,7 +48,7 @@
       <td></td> 
       <td></td> 
       <td></td> 
-      <td class="gone no-go"></td> 
+      <td class="gone no-go"><div class="table-cell"></div></td> 
     </tr> 
     <tr> 
       <td></td> 
@@ -67,7 +66,7 @@
       <td></td> 
       <td></td> 
       <td></td> 
-      <td class="gone no-go"></td> 
+      <td class="gone no-go"><div class="table-cell"></div></td> 
     </tr> 
     <tr> 
       <td></td> 
@@ -85,7 +84,7 @@
       <td></td> 
       <td></td> 
       <td class="no-go"></td> 
-      <td class="gone no-go"></td> 
+      <td class="gone no-go"><div class="table-cell"></div></td> 
     </tr> 
     <tr> 
       <td></td> 
@@ -103,7 +102,7 @@
       <td></td> 
       <td></td> 
       <td class="no-go"></td> 
-      <td class="gone no-go"></td> 
+      <td class="gone no-go"><div class="table-cell"></div></td> 
     </tr> 
     <tr> 
       <td></td> 
@@ -121,7 +120,7 @@
       <td></td> 
       <td></td> 
       <td class="no-go"></td> 
-      <td class="start"></td> 
+      <td class="start"><div class="table-cell"></div></td> 
     </tr> 
   </tbody> 
 </table> 
@@ -129,16 +128,25 @@
 <div id="maze-text"><h2>Watch the video,</h2><p>then create your own box!</p><br><p>I love it when I get to the stage of a project where I can finesse it! The maze puzzle box is now in its 15th iteration after a year's progressive design improvements. In this update I've improved the looks by removing all the visible cut marks on the top surface.</p></div>
 </div><!--END CONTENT-->
 <div id="validator" class="clearfix">
-	<ul><li><h2>Maze Validator.</h2></li><li><p>When both checkboxes below are green you may proceed to creating your box.</p></li></ul>
-	<h2 id='path-status' class='bad'>Continuous path</h1> 
-<h2 id='island-status' class='good'>Unconnected blocks</h1> 
-<!--<p id='json'>json appears here</p>  -->
-<form action="/create" method="post" name="createmaze">
-{% csrf_token %}
-    <input type="hidden" name="mazejson" id="mazejson" />
-    <input type="submit" value="create box" name="mazebutton" disabled="disabled"/>
-</form></div>
+	<div id="validator-top">
+		<h2>Maze Validator.</h2><p>When both checkboxes below are green you may proceed to creating your box.</p>
+	</div>
+	
+	<div id="validator-bottom">
+		<img src="../external/images/validator-x.png"><h3 id='path-status' class='bad'>Continuous path</h3> 
+		<img src="../external/images/validator-v.png"><h3 id='island-status' class='good'>Unconnected blocks</h3> 
+	</div>
+	
+		<!--<p id='json'>json appears here</p>  -->
+			<form action="/create" method="post" name="createmaze">
+				{% csrf_token %}
+    			<input type="hidden" name="mazejson" id="mazejson" />
+    			<input type="submit" value="create box" name="mazebutton" disabled="disabled"/>
+			</form>
+		
+</div><!--END VALIDATOR-->
 {% if box %}
 <p> created a new box with id {{ box.id }} </p>
+</div><!-- END WRAPPER-->
 {% endif %}
 {% endblock %}
