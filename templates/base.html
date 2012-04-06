@@ -27,30 +27,33 @@
 	
 </head>
 <body>
-    <div id="wrapper">
-	
+<div id="header-wrap">
 <div id="header" class="clearfix">
     		
 	<div id="logo">
+		<h1>Maze Puzzle Box</h1> 
 		<a href="http://www.mazepuzzlebox.co.uk"><em>MazePuzzleBox.co.uk</em></a>
 	</div>
+	
 	<div id="box"><!--<a href="/create"><em>box</em></a>--></div>
+	
 	<div id="social">
 		<p>Spread the Word!</p>
 		<!-- AddThis Button BEGIN -->
 		<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-		<a class="addthis_button_preferred_1"></a>
-		<a class="addthis_button_preferred_2"></a>
-		<!--<a class="addthis_button_preferred_3"></a>
-		<a class="addthis_button_preferred_4"></a>-->
-		<a class="addthis_button_compact"></a>
-		<a class="addthis_counter addthis_bubble_style"></a>
+			<a class="addthis_button_preferred_1"></a>
+			<a class="addthis_button_preferred_2"></a>
+			<!--<a class="addthis_button_preferred_3"></a>
+			<a class="addthis_button_preferred_4"></a>-->
+			<a class="addthis_button_compact"></a>
+			<a class="addthis_counter addthis_bubble_style"></a>
 		</div>
 		<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f43944d019b944d"></script>
 		<!-- AddThis Button END -->
 	</div>
-
-	<div id ="nav">
+</div><!-- END HEADER--></div><!-- END HEADER-WRAP-->
+<div id="nav-wrap">
+	<div id ="nav" class="clearfix">
 		<ul>
 			<li><a href="/">home.</a></li>
 			<li><a href="/about">about.</a></li>
@@ -59,21 +62,22 @@
 			<li><a href="/contact">contact.</a></li>
 		</ul>
 	</div>
-	
-</div><!-- END HEADER-->
-			
+	</div>
+
+<div id="wrapper" class="clearfix"> 
         {% if error_message %}
             <div id="error" class="clearfix">Error: {{ error_message }}</div>
         {% endif %}
 
         {% block content %}{% endblock %}
 
+	<div id="footer-wrap" class="clearfix">
     <div id="footer" class="clearfix">
         {% block footer %}
             <a href="/">home.</a> &nbsp; <a href="about">about.</a> &nbsp; <a href="/create">create.</a> &nbsp; <a href="/links">links.</a> &nbsp; <a href="contact">contact.</a>
 <div id="footer-logo"></div>
         {% endblock %}
     </div>
-</div><!-- END WRAPPER-->
+</div>
 </body>
 </html>

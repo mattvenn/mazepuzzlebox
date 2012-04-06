@@ -5,6 +5,7 @@
 {% endblock %}
 {% block content %}
 <div id="slider" class="clearfix">
+	<div id="main-text"><h1>Welcome to Maze Puzzle Box,</h1><h3>the home of Matt Venn's craziest invention so far...</h3></div>
 	<div id="media">   
     	<iframe width="600" height="336" src="http://www.youtube.com/v/HTdaDZDc90g&autohide=1&showinfo=0" frameborder="0" allowfullscreen></iframe>
 	</div>
@@ -44,23 +45,23 @@
                 {% endif %}
         </div>
 
-        </td>
-    </tr>
+<hr>
     <!-- news row -->
-    <tr>
-    <td colspan="2" class="indexTable">
+
         {% if news %}
+<div id="news">
+
             <h1>Latest news.</h1>
             {% for story in news %}
                 <p class="news">{{ story.date }}</p>
-				<a class="news" href="{{ story.url }}">{{ story.title }}</a>
+				<h3><a class="news" href="{{ story.url }}">{{ story.title }}</a></h3>
                 <p class="news">{{ story.summary }}</p><br>
             {% endfor %}
         {% endif %}
         <a href="http://www.mattvenn.net/tag/mazepuzzlebox/">View older stories >>></a>
-    </td>
-    </tr>
-</table>
+</div>
+<aside><h1>Testimonials.</h1><p>my sidebar content</p></aside>
 </div><!--END CONTENT-->
+</div><!-- END WRAPPER-->
 {% endblock %}
 
