@@ -36,9 +36,9 @@ def index(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         boxes = paginator.page(paginator.num_pages)
 
-    #this can be slow, cache it TODO
     latest_news = RSS.getLatestNews()
-    return render_to_response('index.html', { 'boxes': boxes, 'news': latest_news })
+    testimonial = "This is ace, great stuff guys! Bogbrush"
+    return render_to_response('index.html', { 'boxes': boxes, 'news': latest_news, 'testimonial': testimonial })
 
 def details(request, id):
     try:
