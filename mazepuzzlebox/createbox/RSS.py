@@ -4,7 +4,8 @@ import time
 from feedcache import cache
 from datetime import date
 
-feed = 'http://www.mattvenn.net/feed/rss2/?tag=mazepuzzlebox'
+
+feed = 'http://www.mattvenn.net/feed/?tag=mazepuzzlebox'
 ttl = 60 * 60 #1 hour
 def getLatestNews():
     ret = []
@@ -14,13 +15,8 @@ def getLatestNews():
     title = ''
     datepub = ''
     try:
-        print "getting feeds..."
-        print ttl
-        print time.asctime()
         fc = cache.Cache(storage,timeToLiveSeconds=ttl)
         data = fc.fetch(feed)
-        print "done"
-        print time.asctime()
         for entry in data.entries:
             try:
                 url = unicode(entry.link, channels.encoding)
