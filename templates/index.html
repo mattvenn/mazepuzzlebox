@@ -22,7 +22,7 @@
                     {% for rows in box.htmlMaze %}
                         <tr> 
                         {% for cell in rows %}
-                            <td class="{{ cell }}"></td>
+                            <td class="{{ cell }}"><div class="table-cell"></td>
                         {% endfor %}
                         </tr>
                     {% endfor %}
@@ -60,7 +60,7 @@
         {% endif %}
         <a href="http://www.mattvenn.net/tag/mazepuzzlebox/">View older stories >>></a>
 </div>
-<aside><h1>Testimonials.</h1><p>my sidebar content</p></aside>
+<aside><h1>Testimonials.</h1><p>{{ testimonial }}</p></aside>
 </div><!--END CONTENT-->
 </div><!-- END WRAPPER-->
 {% endblock %}
