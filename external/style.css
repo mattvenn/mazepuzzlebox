@@ -85,6 +85,7 @@ html, body {
 #header-wrap {
 	width:100%;
 	background:url(images/header.png) repeat;
+	border-bottom:1px solid #ccc;
 }
 #wrapper {
     width:960px;
@@ -97,6 +98,7 @@ html, body {
 	height:120px;
 	padding:0;
 	margin:0 auto;
+	position:relative;
 }
 #header #logo {
 	text-indent:-999px;
@@ -123,8 +125,8 @@ html, body {
 	height:55px;
 	background:url(images/box.png) no-repeat;
 	position:absolute;
-	bottom:20px;
-	right: 45px;
+	bottom:-120px;
+	right: 75px;
 	z-index:3;
 	}
 #header #box:hover {
@@ -173,7 +175,7 @@ html, body {
 }
 #nav .current_page_item > a,
 #nav .current_page_ancestor > a {
-	font-weight: bold;
+	color:white;
 }
 #header-wrap hr {border: 1px solid #e9e9e9;}
 #content {
@@ -184,7 +186,6 @@ html, body {
 }
 #content h3 {
 	font-size:20px;
-	padding-top:5px;
 }
 #content h3 a {
 	color:black;
@@ -192,12 +193,12 @@ html, body {
 #content h3 a:hover {
 	color:#f90;
 }
-#content hr {margin-top:20px;}
+#content hr {margin:20px 0 ;}
 /* =index
 ----------------------------------*/
 #main-text {padding:0 20px;}
 #slider {
-	margin:20px 0;
+	margin:20px 0;	
 }
 #slider a {color:#000;}
 #slider #media {
@@ -209,20 +210,21 @@ html, body {
 /*	-moz-box-shadow:    0px 0px 3px 0px #666;
 	-webkit-box-shadow: 0px 0px 3px 0px #666;
 	box-shadow:         0px 0px 3px 0px #666;*/
-	border:1px solid #ccc;
+	border:1px solid #ccc;	
 }
 #slider #media-text {
 	float:right;
-	width:279px;
+	width:280px;
 	height:238px;
 	background:#f90;
 	display:inline;
 	padding:50px 20px;
 	margin:20px 20px 0 0;
-	border-left:1px solid #ccc;
 	/*-moz-box-shadow:    0px 0px 3px 0px #666;
 	-webkit-box-shadow: 0px 0px 3px 0px #666;
 	box-shadow:         0px 0px 3px 0px #666;*/
+	border-radius: 0 10px 10px 0;
+	
 }
 #slider #media-text a, #slider #media-text a:previous, #slider #media-text a:focus {
 	color:black;
@@ -244,12 +246,22 @@ aside {
 	width:260px;
 	height:100%;
 	float:right;
-	border-left:1px solid #ccc;
-	padding: 0 20px;
+	border-radius:10px;
+	padding:20px;
+	background:#000; /*for older browsers*/
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000', endColorstr='#3d3c3e'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#3d3c3e)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #000,  #3d3c3e); /* for firefox 3.6+ */
+	color:white;
+}
+aside p.author {
+	color:#f90;
+	font-size:small;
 }
 #footer-wrap {
 	width:100%;
 	background:#f90;
+	margin-top:20px;
 }
 #footer {
 	margin:0 auto;
@@ -257,7 +269,6 @@ aside {
 	height:100px;
 	padding:20px;
     font-size:10pt;
-	position:relative;
 	font-family: "museo-slab",serif;
 	font-style: normal;
 	font-weight: 900;
@@ -271,14 +282,10 @@ aside {
 	width:250px;
 	height:55px;
 	background:url(images/logo.png) no-repeat;
-	position:absolute;
-	bottom:40px;
-	right: 20px;
-	z-index:3;
+	margin:5px 0;
 	}
 #footer-logo:hover {
-		background:url(images/logo-silver.png) no-repeat;
-		}
+	background:url(images/logo.png) no-repeat;
 }
 table.indexTable
 {
@@ -317,6 +324,7 @@ width: 400px;
 	display:inline;
 	padding:20px 20px;
 	margin:20px 0 0;
+	border-radius: 0 10px 10px 0;
 }
 #maze-text a {color:white;}
 #maze-text a:hover{
@@ -324,7 +332,7 @@ width: 400px;
 	text-decoration:none;
 }
 #validator {
-	background:#ccc;
+	background:#000;
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000', endColorstr='#3d3c3e'); /* for IE */
 	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#3d3c3e)); /* for webkit browsers */
 	background: -moz-linear-gradient(top,  #000,  #3d3c3e); /* for firefox 3.6+ */
@@ -364,7 +372,55 @@ width: 400px;
 	vertical-align:middle;
 	margin-right:10px;
 }
-
+#path-status {
+	display:block;
+	float:left;
+	background:url(images/validator-v.png) no-repeat;
+	height:35px;
+	width:180px;
+	margin:0 0 20px 0;
+	padding:15px 0 0 70px;
+	}
+#island-status {
+	display:block;
+	float:left;
+	background:url(images/validator-v.png) no-repeat;
+	height:35px;
+	width:200px;
+	margin:0 20px 20px 0;
+	padding:15px 0 0 70px;
+	}
+.create-button {
+	font-family: "museo-slab",serif;
+	font-style: normal;
+	font-weight: 500;
+	width:200px;
+	height:35px;
+	border-radius:50px;
+	background:#000; /*for older browsers*/
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#666', endColorstr='#3d3c3e'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#666), to(#3d3c3e)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #666,  #3d3c3e); /* for firefox 3.6+ */
+	color:white;
+	text-align:center;
+	padding-top:15px;
+	float:right;
+	margin-right:50px;
+}
+#contact {
+	font-family: "museo-slab",serif;
+	font-style: normal;
+	font-weight: 500;
+	width:500px;
+	padding:20px;
+	border-radius:10px;
+	margin:20px 0 0;
+	background:#000;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000', endColorstr='#3d3c3e'); /* for IE */
+	background: -webkit-gradient(linear, left top, left bottom, from(#000), to(#3d3c3e)); /* for webkit browsers */
+	background: -moz-linear-gradient(top,  #000,  #3d3c3e); /* for firefox 3.6+ */
+	color:white;
+}
 /* =detail
 ----------------------------------*/
 #details-text {padding:0 20px 20px;}

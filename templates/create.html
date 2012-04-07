@@ -10,7 +10,7 @@
 {% block content %}
 <div id="content" class="clearfix">
 <h1>Design your maze!</h1>
-<p>Use the maze editor below to build yourself a maze, this can then be verified by the Maze Validator before the part are made.</p>
+<p>Use the Maze Editor to build yourself a maze, then use check the Maze Validator below to ensure it works.</p>
 <div class="maze" id="maze"> 
 <table> 
   <tbody> 
@@ -125,28 +125,28 @@
   </tbody> 
 </table> 
 </div>
-<div id="maze-text"><h2>Instructions.</h2><p>Starting at the circle, create a path that leads to the cross. We've started you off below. In order for the maze to work, you need a <a href="/tips.html#continuous-path">continuous path</a> from circle to cross with no <a href="/tips.html#unconnected-blocks">unconnected blocks</a>.</p><br><p>For more tips on building your maze click <a href="/tips.html">here.</a></div>
+<div id="maze-text"><h2>The Maze Editor.</h2><p>Create a path from the circle to the cross. In order for your maze to work you need a continuous path with no unconnected blocks.</p><br><p>For more tips and terminology on building your maze click <a href="/tips.html">here.</a></div>
 </div><!--END CONTENT-->
+
 <div id="validator" class="clearfix">
 	<div id="validator-top">
 		<h2>Maze Validator.</h2><p>When both checkboxes below are green you may proceed to creating your box.</p>
 	</div>
 	
 	<div id="validator-bottom">
-		<img src="../external/images/validator-x.png"><h3 id='path-status' class='bad'>Continuous path</h3> 
-		<img src="../external/images/validator-v.png"><h3 id='island-status' class='good'>Unconnected blocks</h3> 
+		<div id="path-status" class='bad'><h3>Continuous path</h3></div>
+		<div id="island-status" class='good'><h3>Unconnected blocks</h3></div>
+		<div class="create-button">Create your Maze.</div>
 	</div>
-	
-		<!--<p id='json'>json appears here</p>  -->
+		<!--<p id='json'>json appears here</p>  
 			<form action="/create" method="post" name="createmaze">
 				{% csrf_token %}
     			<input type="hidden" name="mazejson" id="mazejson" />
     			<input type="submit" value="create box" name="mazebutton" disabled="disabled"/>
-			</form>
+			</form>-->
 		
 </div><!--END VALIDATOR-->
 {% if box %}
 <p> created a new box with id {{ box.id }} </p>
-</div><!-- END WRAPPER-->
-{% endif %}
+{% endif %}</div><!-- END WRAPPER-->
 {% endblock %}

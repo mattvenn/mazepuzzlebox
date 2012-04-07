@@ -59,8 +59,10 @@ div.minimaze td.gone {
     color: #ccc;
 }
 .bad {
+	background:url(images/validator-x.png) no-repeat;
     color: red;
 }
 .good {
+	background:url(images/validator-v.png) no-repeat;
     color: green;
 }
