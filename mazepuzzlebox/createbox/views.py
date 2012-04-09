@@ -9,6 +9,7 @@ import datetime
 from pytz import timezone
 
 from createbox.models import Box
+from createbox.models import Testimonial
 import logging
 #dxf stuff
 import DXF.drawMaze
@@ -36,9 +37,12 @@ def index(request):
         # If page is out of range (e.g. 9999), deliver last page of results.
         boxes = paginator.page(paginator.num_pages)
 
+    #news
     latest_news = RSS.getLatestNews()
-    testimonial = "This is ace, great stuff guys! Bogbrush"
-    return render_to_response('index.html', { 'boxes': boxes, 'news': latest_news, 'testimonial': testimonial })
+
+    #testimonials
+    testimonial = Testimonial.objects.order_by('?')[0]
+    return render_to_response('index.html', { 'boxes': boxes, 'news': latest_news, 'testimonial_text': testimonial.testimonial, 'testimonial_author': testimonial.author })
 
 def details(request, id):
     try:
