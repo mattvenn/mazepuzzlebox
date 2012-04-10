@@ -20,6 +20,8 @@ import DXF.joinDXF
 import DXF.buildInstructions
 import RSS
 
+extHTTP = True
+
 def index(request):
     latest_box_list = Box.objects.all().order_by('-pub_date')
 #    for box in latest_box_list:
@@ -42,7 +44,7 @@ def index(request):
 
     #testimonials
     testimonial = Testimonial.objects.order_by('?')[0]
-    return render_to_response('index.html', { 'boxes': boxes, 'news': latest_news, 'testimonial_text': testimonial.testimonial, 'testimonial_author': testimonial.author })
+    return render_to_response('index.html', { 'extHTTP' :settings.EXTHTTP, 'boxes': boxes, 'news': latest_news, 'testimonial_text': testimonial.testimonial, 'testimonial_author': testimonial.author })
 
 def details(request, id):
     try:
@@ -54,7 +56,7 @@ def details(request, id):
     try:
         thickness = request.POST['thickness']
     except:
-        return render_to_response('detail.html', {'box': box, 'maze': box.htmlMaze(), 'version' : settings.DXFVERSION }, context_instance=RequestContext(request))
+        return render_to_response('detail.html', {'extHTTP' :settings.EXTHTTP,'box': box, 'maze': box.htmlMaze(), 'version' : settings.DXFVERSION }, context_instance=RequestContext(request))
 
     #validate thickness
     try:
@@ -62,11 +64,11 @@ def details(request, id):
     except ValueError:
         err_msg = "'%s' isn't a number" % thickness
         logging.warn(err_msg)
-        return render_to_response('detail.html', { 'box':box, 'error_message': err_msg, 'maze': box.htmlMaze(), 'version' : settings.DXFVERSION }, context_instance=RequestContext(request))
+        return render_to_response('detail.html', {'extHTTP' :settings.EXTHTTP, 'box':box, 'error_message': err_msg, 'maze': box.htmlMaze(), 'version' : settings.DXFVERSION }, context_instance=RequestContext(request))
     if float(thickness) > 8 or float(thickness) < 3:
         err_msg = "thickness needs to be between 3 and 8mm"
         logging.warn(err_msg)
-        return render_to_response('detail.html', { 'box':box, 'error_message': err_msg, 'maze': box.htmlMaze(), 'version' : settings.DXFVERSION }, context_instance=RequestContext(request))
+        return render_to_response('detail.html', {'extHTTP' :settings.EXTHTTP, 'box':box, 'error_message': err_msg, 'maze': box.htmlMaze(), 'version' : settings.DXFVERSION }, context_instance=RequestContext(request))
 
     #make the DXF
     #TODO better error handling
@@ -80,11 +82,11 @@ def details(request, id):
     except Exception as e:
         err_msg = "error making DXF: ", e.args
         logging.error(err_msg)
-        return render_to_response('detail.html', { 'box':box, 'error_message': err_msg, 'maze': box.htmlMaze(), 'version' : settings.DXFVERSION }, context_instance=RequestContext(request))
+        return render_to_response('detail.html', {'extHTTP' :settings.EXTHTTP, 'box':box, 'error_message': err_msg, 'maze': box.htmlMaze(), 'version' : settings.DXFVERSION }, context_instance=RequestContext(request))
 
     link = "/boxes/boxmaze_%i.dxf" % box.id
     instructionsLink = "/boxes/instructions_%i.png" % box.id
-    return render_to_response('detail.html', {'box': box, 'instructions' : instructionsLink,  'plans' : link, 'thickness' : thickness, 'maze': box.htmlMaze(), 'version' : settings.DXFVERSION },
+    return render_to_response('detail.html', {'extHTTP' :settings.EXTHTTP,'box': box, 'instructions' : instructionsLink,  'plans' : link, 'thickness' : thickness, 'maze': box.htmlMaze(), 'version' : settings.DXFVERSION },
         context_instance=RequestContext(request))
     
 
@@ -92,7 +94,7 @@ def create(request ):
     try:
         mazeJSON = request.POST['mazejson']
     except:
-        return render_to_response('create.html',
+        return render_to_response('create.html',{ 'extHTTP' : extHTTP},
             context_instance=RequestContext(request))
 
     box = Box(pub_date=datetime.datetime.now(timezone('GMT')),maze=mazeJSON,version=settings.DXFVERSION)

@@ -6,9 +6,11 @@
 {% block content %}
 <div id="slider" class="clearfix">
 	<div id="main-text"><h1>Welcome to Maze Puzzle Box,</h1><h3>the home of Matt Venn's craziest invention so far...</h3></div>
+    {% if extHTTP %}
 	<div id="media">   
     	<iframe width="600" height="336" src="http://www.youtube.com/v/HTdaDZDc90g&autohide=1&showinfo=0" frameborder="0" allowfullscreen></iframe>
 	</div>
+    {% endif %}
 	<div id="media-text"><h1>Watch the video,</h1><p>then create your own box!</p><br><p>I love it when I get to the stage of a project where I can finesse it! The maze puzzle box is now in its 15th iteration after a year's progressive design improvements. In this update I've improved the looks by removing all the visible cut marks on the top surface.</p><br><a href="/create"><p>Click here for further details.</p></a></div>
 </div>
 <div id="content" class="clearfix"><a name="latest-boxes"></a>
