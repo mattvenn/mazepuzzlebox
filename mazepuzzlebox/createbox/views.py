@@ -5,22 +5,23 @@ from django.core.urlresolvers import reverse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.conf import settings
+from django.core.mail import send_mail, BadHeaderError
 import datetime
 from pytz import timezone
 
+from createbox.models import ContactForm
 from createbox.models import Box
 from createbox.models import Testimonial
 import logging
 #dxf stuff
 import DXF.drawMaze
-import DXF.drawMazeSVG
+import DXF.drawInstructionsMaze
 import DXF.make_id
 import DXF.make_pieces
 import DXF.joinDXF
 import DXF.buildInstructions
 import RSS
 
-extHTTP = True
 
 def index(request):
     latest_box_list = Box.objects.all().order_by('-pub_date')
@@ -62,7 +63,10 @@ def details(request, id):
     try:
         float(thickness)
     except ValueError:
-        err_msg = "'%s' isn't a number" % thickness
+        if len(thickness) == 0: 
+            err_msg = "you didn't type a number"
+        else:
+            err_msg = "'%s' isn't a number" % thickness
         logging.warn(err_msg)
         return render_to_response('detail.html', {'extHTTP' :settings.EXTHTTP, 'box':box, 'error_message': err_msg, 'maze': box.htmlMaze(), 'version' : settings.DXFVERSION }, context_instance=RequestContext(request))
     if float(thickness) > 8 or float(thickness) < 3:
@@ -74,10 +78,10 @@ def details(request, id):
     #TODO better error handling
     try:
         DXF.drawMaze.drawMaze( box.maze,box )
-        DXF.drawMazeSVG.drawMaze( box.maze,box )
         DXF.make_pieces.make_pieces(float(thickness))
         DXF.make_id.make_id(box.id)
         DXF.joinDXF.joinDXF(box.id)
+        DXF.drawInstructionsMaze.drawMaze( box.maze,box )
         DXF.buildInstructions.buildInstructions(box.id)
     except Exception as e:
         err_msg = "error making DXF: ", e.args
@@ -94,7 +98,7 @@ def create(request ):
     try:
         mazeJSON = request.POST['mazejson']
     except:
-        return render_to_response('create.html',{ 'extHTTP' : extHTTP},
+        return render_to_response('create.html',{ 'extHTTP' : settings.EXTHTTP},
             context_instance=RequestContext(request))
 
     box = Box(pub_date=datetime.datetime.now(timezone('GMT')),maze=mazeJSON,version=settings.DXFVERSION)
@@ -105,3 +109,21 @@ def create(request ):
     # with POST data. This prevents data from being posted twice if a
     # user hits the Back button.
     return HttpResponseRedirect(reverse('createbox.views.details', args=(box.id,)))
+
+def contactview(request):
+    message = request.POST.get('message', '')
+    from_email = request.POST.get('email', '')
+    subject = "contact from MPB"
+    if message and from_email:
+        try:
+            send_mail(subject, message, from_email, ['matt@mattvenn.net'])
+        except BadHeaderError:
+            err_msg = 'Invalid header found.'
+            return render_to_response('contact.html', {'extHTTP' :settings.EXTHTTP, 'error_message': err_msg}, context_instance=RequestContext(request))
+        except Exception as e:
+            err_msg = 'Problem sending email: ', e
+            return render_to_response('contact.html', {'extHTTP' :settings.EXTHTTP, 'error_message': err_msg}, context_instance=RequestContext(request))
+        return HttpResponseRedirect('/contact/thankyou')
+    else:
+        return render_to_response('contact.html', {'extHTTP': settings.EXTHTTP}, context_instance=RequestContext(request))
+
