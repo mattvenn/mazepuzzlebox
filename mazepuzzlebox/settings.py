@@ -14,8 +14,8 @@ if LIVE:
     DEBUG = False
     ADMIN_MEDIA_PREFIX = '/media/admin/'
 else:
-    ROOT_DIR = "/home/matthew/work/python/mazepuzzlebox/"
-#    ROOT_DIR = "/Users/admin/Documents/Maze Puzzle Box/mazepuzzlebox/"
+ #   ROOT_DIR = "/home/matthew/work/python/mazepuzzlebox/"
+    ROOT_DIR = "/Users/admin/Documents/Maze Puzzle Box/mazepuzzlebox/"
     ROOT_URLCONF = 'mazepuzzlebox.urls'
     DEBUG = True
     ADMIN_MEDIA_PREFIX = '/media/'
