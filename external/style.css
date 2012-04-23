@@ -376,7 +376,6 @@ width: 400px;
 #path-status {
 	display:block;
 	float:left;
-	background:url(images/validator-v.png) no-repeat;
 	height:35px;
 	width:180px;
 	margin:0 0 20px 0;
@@ -385,13 +384,12 @@ width: 400px;
 #island-status {
 	display:block;
 	float:left;
-	background:url(images/validator-v.png) no-repeat;
 	height:35px;
 	width:200px;
 	margin:0 20px 20px 0;
 	padding:15px 0 0 70px;
 	}
-.create-button {
+input[type=submit]{
 	font-family: "museo-slab",serif;
 	font-style: normal;
 	font-weight: 500;
@@ -407,6 +405,10 @@ width: 400px;
 	padding-top:15px;
 	float:right;
 	margin-right:50px;
+}
+
+input[type=submit][disabled] {
+    background: red;
 }
 #contact {
 	font-family: "museo-slab",serif;

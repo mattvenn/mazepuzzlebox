@@ -1,6 +1,9 @@
 # Django settings for mazepuzzlebox project.
 import os
 
+#useful for developing with no internet
+EXTHTTP = False
+
 CUTCOLOR = 0
 PATTERNCOLOR = 3
 

@@ -18,6 +18,11 @@ class Callable:
     def __init__(self, anycallable):
         self.__call__ = anycallable
 
+class Testimonial(models.Model):
+    pub_date = models.DateTimeField('date published')
+    testimonial = models.CharField(max_length=400)
+    author = models.CharField(max_length=20)
+
 # Create your models here.
 class Box(models.Model):
     pub_date = models.DateTimeField('date published')

@@ -8,6 +8,7 @@
 	<link rel="icon" type="image/png" href="/external/images/favicon.png">
 
     {% block extrahead %}{% endblock %}
+    {% if extHTTP %}
     <script type="text/javascript">
 
       var _gaq = _gaq || [];
@@ -21,9 +22,12 @@
       })();
 
     </script>
+    {% endif %}
 
+    {% if extHTTP %}
 	<script type="text/javascript" src="http://use.typekit.com/qss7vcm.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    {% endif %}
 	
 </head>
 <body>
@@ -39,6 +43,7 @@
 	
 	<div id="social">
 		<p>Spread the Word!</p>
+        {% if extHTTP %}
 		<!-- AddThis Button BEGIN -->
 		<div class="addthis_toolbox addthis_default_style addthis_32x32_style">
 			<a class="addthis_button_preferred_1"></a>
@@ -50,6 +55,7 @@
 		</div>
 		<script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4f43944d019b944d"></script>
 		<!-- AddThis Button END -->
+        {% endif %}
 	</div>
 </div><!-- END HEADER--></div><!-- END HEADER-WRAP-->
 <div id="nav-wrap">
