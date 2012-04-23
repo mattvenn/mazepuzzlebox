@@ -22,14 +22,14 @@
     </table>
     </div>
 {% endif %}
-<div id="maze-text"><h2>Watch the video,</h2><p>then create your own box!</p><br><p>I love it when I get to the stage of a project where I can finesse it! The maze puzzle box is now in its 15th iteration after a year's progressive design improvements. In this update I've improved the looks by removing all the visible cut marks on the top surface.</p></div>
+<div id="maze-text"><h2>Nice one!</h2><p>Now you've created your own maze, you can either buy the box or build one yourself.</p><br><p>To build one yourself, generate the DXF plans and follow the instructions...</div>
 {% if version == box.version %}
 </div><!--END CONTENT-->
 <div id="details-text" class="clearfix">
-	<h2>Buy the complete box</h2><span>{% include "paypal_built.html" %}</span>
+	<h2>Buy the complete box...</h2><span>{% include "paypal_built.html" %}</span>
 <hr>
-<h2>...or Cut the parts yourself</h2>
-<p>To generate the DXF plans for this box, enter your material thickness in mm:</p>
+<h2>...or cut the parts yourself</h2>
+<p>To generate the plans for this box, enter your material thickness in mm:</p>
 <p><form action="/{{ box.id }}" method="post">
 {% csrf_token %}
     <input type="text" name="thickness" />
