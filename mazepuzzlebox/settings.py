@@ -2,7 +2,7 @@
 import os
 
 #useful for developing with no internet
-EXTHTTP = False
+EXTHTTP = True
 
 CUTCOLOR = 0
 PATTERNCOLOR = 3
