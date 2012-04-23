@@ -14,6 +14,9 @@ div.maze td {
 }
 .table-cell {
 	height:32px; /* This sets a minimum height for one cell in each row to fix Firefox */
+}
+.mini-table-cell {
+	height:9px; /* This sets a minimum height for one cell in each row to fix Firefox */
 } 
 div.maze td.no-go {
     border: none;

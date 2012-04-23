@@ -24,7 +24,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 }
 body {
 	background: #fff;
-	line-height: 1;
+	line-height: 1.2;
 }
 ol, ul {
 	list-style: none;
@@ -215,16 +215,17 @@ html, body {
 }
 #slider #media-text {
 	float:right;
-	width:280px;
-	height:238px;
+	width:278px;
+	height:286px;
 	background:#f90;
 	display:inline;
-	padding:50px 20px;
+	padding: 30px 20px 20px;
 	margin:20px 20px 0 0;
 	/*-moz-box-shadow:    0px 0px 3px 0px #666;
 	-webkit-box-shadow: 0px 0px 3px 0px #666;
 	box-shadow:         0px 0px 3px 0px #666;*/
 	border-radius: 0 10px 10px 0;
+	border: 1px solid #ccc;
 	
 }
 #slider #media-text a, #slider #media-text a:previous, #slider #media-text a:focus {
