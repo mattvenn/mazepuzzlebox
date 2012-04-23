@@ -435,6 +435,9 @@ input[type=submit][disabled] {
 	background: -moz-linear-gradient(top,  #000,  #3d3c3e); /* for firefox 3.6+ */
 	color:white;
 }
+#content input {
+	float:left;
+}
 /* =detail
 ----------------------------------*/
 #details-text {padding:0 20px 20px;}

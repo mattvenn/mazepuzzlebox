@@ -3,26 +3,27 @@
 {% block content %}
 <div id="content" class="clearfix"><h1>Get in touch.</h1><p>For further information please drop us a line using the form below.</p>
 		
-            <div id="c_form">
-                <br /><br />
+            <div id="contact">
                 <form name="contactform" action="/contact" method="post">
 				{% csrf_token %}
-                    <div id="name_email">
-                        <label id="id_name">Name:</label>
-                        <input type="text" name="name" value="" id="name" />
-                        <label id="id_email">Email:</label>
-                        <input type="text" name="email" value="" id="Email" />
-                    </div><!-- end name_email -->
-                    <div id="message">
-                        <label id="id_message">Message:</label>
-                        <textarea name="message" rows="8" cols="37"></textarea>
-
-                    </div><!-- end message -->
-                    <div id="submit">
-                        <input type="submit" />
-                    </div><!-- end submit -->
+					<table border="0" cellspacing="5px" cellpadding="20px">
+                        <tr>
+							<td width="100px"><label id="id_name">Name:</label></td>
+							<td width="500px"><input type="text" name="name" value="" id="name" /></td>
+						</tr>
+                        <tr>
+							<td><label id="id_email">Email:</label></td>
+                        	<td><input type="text" name="email" value="" id="Email" /></td>
+                        <tr>
+							<td valign="top"><label id="id_message">Message:</label></td>
+                        	<td><textarea name="message" rows="8" cols="37"></textarea></td>
+					</table>
                 </form>
+			</div>
+			<input type="submit" value="Submit."/>
+			
+			
 
-</div>
+</div><!-- END CONTENT-->
 </div><!-- END WRAPPER-->
 {% endblock %}
