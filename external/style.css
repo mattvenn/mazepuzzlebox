@@ -102,7 +102,7 @@ html, body {
 }
 #header #logo {
 	text-indent:-999px;
-	margin: 20px 0;
+	margin: 20px 0 20px 20px;
 	background:url(images/logo-new.png) no-repeat;
 	height:77px;
 	width:600px;
@@ -180,6 +180,7 @@ html, body {
 #header-wrap hr {border: 1px solid #e9e9e9;}
 #content {
 	padding: 10px 20px 20px;
+	position:relative;
 }
 #content h2 {
 	padding-bottom:15px;
@@ -427,3 +428,6 @@ width: 400px;
 #details-text form {padding:0;margin:0;}
 .alignBottom {vertical-align:bottom;}
 #details-text p {margin-top:10px;}
+#about-text {margin-left:300px;float:right;}
+#about-text p, #about-text h1 {text-align:right;}
+#about-image {position:absolute; z-index:0; margin-right:10px;background: url(images/matt.png) no-repeat; width:400px; height:313px;left:0;bottom:-20px;}
