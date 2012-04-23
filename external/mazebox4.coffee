@@ -57,8 +57,8 @@ class MazeDesigner
                 @action = 'breaking'
 
             @update cell
-            @setStatus('path', 'thinking')
-            @setStatus('island', 'thinking')
+           # @setStatus('path', 'thinking')
+          #  @setStatus('island', 'thinking')
 
         breakableCells.mouseenter (e) =>
             cell = $(e.target)
