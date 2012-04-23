@@ -16,5 +16,6 @@ urlpatterns = patterns('',
     (r'^about',  direct_to_template, {'template': 'about.html', 'extra_context': { 'extHTTP' : settings.EXTHTTP }}),
     (r'^links',  direct_to_template, {'template': 'links.html', 'extra_context': { 'extHTTP' : settings.EXTHTTP }}),
     (r'^tips',  direct_to_template, {'template': 'tips.html', 'extra_context': { 'extHTTP' : settings.EXTHTTP }}),
-    (r'^contact',  direct_to_template, {'template': 'contact.html', 'extra_context': { 'extHTTP' : settings.EXTHTTP }}),
+    (r'^contact/thankyou',  direct_to_template, {'template': 'thankyou.html', 'extra_context': { 'extHTTP' : settings.EXTHTTP }}),
+    (r'^contact',  'createbox.views.contactview'),
 )
