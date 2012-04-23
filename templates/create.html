@@ -134,14 +134,15 @@
 	</div>
 	
 	<div id="validator-bottom">
-		<div id="path-status" class='bad'><h3>Continuous path</h3></div>
-		<div id="island-status" class='good'><h3>Unconnected blocks</h3></div>
-	</div>
+		<div id="path-status" class='bad'><h3>Continuous path.</h3></div>
+		<div id="island-status" class='good'><h3>Unconnected blocks.</h3></div>
+
 			<form action="/create" method="post" name="createmaze">
 				{% csrf_token %}
     			<input type="hidden" name="mazejson" id="mazejson" />
-    			<input type="submit" value="create box" name="mazebutton" disabled>
+    			<input type="submit" value="Create box." name="mazebutton" disabled>
 			</form>
+		</div>	
 		
 </div><!--END VALIDATOR-->
 {% if box %}
