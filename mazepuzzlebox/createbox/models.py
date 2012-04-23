@@ -3,6 +3,9 @@ import json
 import simplejson as json
 from django.conf import settings
 
+from django.core.mail import send_mail, BadHeaderError
+
+
 #TODO
 
 endX = 2
@@ -17,6 +20,12 @@ noGoEndY = 6
 class Callable:
     def __init__(self, anycallable):
         self.__call__ = anycallable
+
+# A simple contact form with four fields.
+class ContactForm(models.Model):
+    name = models.CharField(max_length=20)
+    email = models.EmailField()
+    message = models.TextField()
 
 class Testimonial(models.Model):
     pub_date = models.DateTimeField('date published')
