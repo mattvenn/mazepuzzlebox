@@ -3,13 +3,15 @@ import shelve
 import time
 from feedcache import cache
 from datetime import date
+from django.conf import settings
+cacheFile=settings.ROOT_DIR + "mazepuzzlebox/.feedcache"
 
 
 feed = 'http://www.mattvenn.net/feed/?tag=mazepuzzlebox'
 ttl = 60 * 60 #1 hour
 def getLatestNews():
     ret = []
-    storage = shelve.open('.feedcache' )
+    storage = shelve.open(cacheFile)
     url = ''
     summary = ''
     title = ''
