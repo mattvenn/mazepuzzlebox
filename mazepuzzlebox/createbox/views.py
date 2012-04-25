@@ -15,11 +15,11 @@ from createbox.models import Testimonial
 import logging
 #dxf stuff
 import DXF.drawMaze
-import DXF.drawInstructionsMaze
 import DXF.make_id
 import DXF.make_pieces
 import DXF.joinDXF
 import DXF.buildInstructions
+#import DXF.drawInstructionsMaze 
 import RSS
 
 
