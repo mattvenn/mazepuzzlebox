@@ -21,6 +21,15 @@ s/w todo
 + deal with changes in box design, using version numbers
 - styling; please someone help me!
 
+dependencies
+-----------
+
+python-rsvg
+python-cairo
+cairo
+feedcache http://pypi.python.org/pypi/feedcache
+
+
 box todo
 --------
 
