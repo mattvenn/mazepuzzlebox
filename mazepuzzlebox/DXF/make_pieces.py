@@ -86,6 +86,7 @@ def frange(start, end=None, inc=None):
         L.append(next)
         
     return L
+
 def testHoleSize( t ):
     global d,thickness
     thickness = t

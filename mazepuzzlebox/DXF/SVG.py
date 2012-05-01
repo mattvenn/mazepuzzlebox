@@ -8,7 +8,8 @@ simple wrapper for svgwrite that replaces all the original sdxf calls from boxot
 #SVGBUST
 cm = 3.543307
 
-#helper routines to scale pixels to cm
+#helper routines to scale pixels to cm, mainly because polylines can't be given units along with the dimensions
+#SVGBUST
 def convArrayTupleCM(points):
     newpoints = []
     for point in points:
@@ -25,7 +26,9 @@ class Drawing():
         self.styles = {}
         self.styles['line'] = self.dwg.add(self.dwg.g(id='lines', stroke='black', fill='none', stroke_width='0.3mm'))
         self.styles['cline']= self.dwg.add(self.dwg.g(id='constructionlines', stroke='red', opacity='0.50'))
+        self.styles['cut']= self.dwg.add(self.dwg.g(id='cutlines', stroke='black', stroke_width='0.3mm', fill='none'))
         self.styles['mline'] = self.dwg.add(self.dwg.g(id='mazelines', stroke='black', stroke_width='0.3mm'))
+        self.styles['engrave'] = self.dwg.add(self.dwg.g(id='engravlines', stroke='blue', stroke_width='0.3mm'))
 
     def saveas(self):
         self.dwg.save()

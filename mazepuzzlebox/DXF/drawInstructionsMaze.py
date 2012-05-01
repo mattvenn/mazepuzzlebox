@@ -10,7 +10,7 @@ endX = mazepuzzlebox.createbox.models.endX
 endY = mazepuzzlebox.createbox.models.endY
 startX = mazepuzzlebox.createbox.models.startX
 startY = mazepuzzlebox.createbox.models.startY
-dxfdir=settings.ROOT_DIR + "mazepuzzlebox/DXF/processDXF/"
+svgdir=settings.ROOT_DIR + "mazepuzzlebox/DXF/processSVG/"
 passageWidth = 5
 linePoints = []
 maze = None
@@ -159,7 +159,7 @@ def drawDXFMaze():
 def drawMaze( jstr,box ):
     global transX,transY,d,drawColor,maze,xCells,yCells
     (xCells,yCells)=box.getDimensions()
-    d=Drawing(dxfdir+'maze.svg')
+    d=Drawing(svgdir+'instructionsmaze.svg')
 
     #import the maze
     matrix = json.loads( jstr )
