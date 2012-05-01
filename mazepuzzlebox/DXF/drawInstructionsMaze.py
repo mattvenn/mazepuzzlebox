@@ -4,12 +4,16 @@ from SVG import *
 import math
 import sys
 from django.conf import settings
-import mazepuzzlebox.createbox.models 
+#import mazepuzzlebox.createbox.models 
 
-endX = mazepuzzlebox.createbox.models.endX
-endY = mazepuzzlebox.createbox.models.endY
-startX = mazepuzzlebox.createbox.models.startX
-startY = mazepuzzlebox.createbox.models.startY
+endX = 2
+endY = 4
+startX = 15
+startY = 5
+#endX = mazepuzzlebox.createbox.models.endX
+#endY = mazepuzzlebox.createbox.models.endY
+#startX = mazepuzzlebox.createbox.models.startX
+#startY = mazepuzzlebox.createbox.models.startY
 svgdir=settings.ROOT_DIR + "mazepuzzlebox/DXF/processSVG/"
 passageWidth = 5
 linePoints = []
