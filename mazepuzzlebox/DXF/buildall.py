@@ -7,6 +7,7 @@ import make_piecesSVG
 import joinDXF
 import drawInstructionsMaze
 import buildInstructions
+import make_idSVG
 #import Box
 from mazepuzzlebox.createbox.models import Box
 id = 37
