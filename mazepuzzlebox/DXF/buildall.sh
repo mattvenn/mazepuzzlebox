@@ -1,7 +1,9 @@
 #!/bin/bash
 # boxid, thickness, json maze description
 export DJANGO_SETTINGS_MODULE=mazepuzzlebox.settings
-export PYTHONPATH=~/work/python/mazepuzzlebox
+rootdir=/var/www/mazepuzzlebox
+#rootdir=~/work/python/mazepuzzlebox
+export PYTHONPATH=$rootdir
 
-cd ~/work/python/mazepuzzlebox/mazepuzzlebox/DXF/
+cd $rootdir/mazepuzzlebox/DXF/
 python buildall.py
