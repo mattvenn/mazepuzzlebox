@@ -19,7 +19,7 @@ import DXF.make_id
 import DXF.make_pieces
 import DXF.joinDXF
 import DXF.buildInstructions
-#import DXF.drawInstructionsMaze 
+import DXF.drawInstructionsMaze 
 import RSS
 
 
@@ -81,6 +81,7 @@ def details(request, id):
         DXF.make_pieces.make_pieces(float(thickness))
         DXF.make_id.make_id(box.id)
         DXF.joinDXF.joinDXF(box.id)
+	#SVG
         DXF.drawInstructionsMaze.drawMaze( box.maze,box )
         DXF.buildInstructions.buildInstructions(box.id)
     except Exception as e:
