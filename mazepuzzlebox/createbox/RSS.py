@@ -20,15 +20,11 @@ def getLatestNews():
         fc = cache.Cache(storage,timeToLiveSeconds=ttl)
         data = fc.fetch(feed)
         for entry in data.entries:
-            try:
-                url = unicode(entry.link, channels.encoding)
-                summary = unicode(entry.description, channels.encoding)
-                title = unicode(entry.title, channels.encoding)
-            except:
-                url = entry.link
-                summary = entry.description
-                title = entry.title
+            url = entry.link
+            summary = entry.description
+            title = entry.title
         
+            print summary
             date = entry.updated_parsed
             datestr = time.strftime('%d/%m/%Y',date)
             ret.append( { 'url' : url, 'summary' : summary, 'title' : title , 'date' : datestr } )
