@@ -1,4 +1,5 @@
 import sys
+import logging
 import shelve
 import time
 from feedcache import cache
@@ -33,7 +34,12 @@ def getLatestNews():
             datestr = time.strftime('%d/%m/%Y',date)
             ret.append( { 'url' : url, 'summary' : summary, 'title' : title , 'date' : datestr } )
         
+    except Exception, e:
+        #nothing
+        logging.warn( e )
+        ret=[]
     finally:
         storage.close()
 
+    return ret 
     return ret[0:4]
