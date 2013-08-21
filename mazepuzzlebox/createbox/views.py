@@ -84,6 +84,8 @@ def details(request, id):
 	#SVG
         DXF.drawInstructionsMaze.drawMaze( box.maze,box )
         DXF.buildInstructions.buildInstructions(box.id)
+        err_msg = "box built at thickness" + thickness
+        logging.debug(err_msg)
     except Exception as e:
         err_msg = "error making DXF: ", e.args
         logging.error(err_msg)
