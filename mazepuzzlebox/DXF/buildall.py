@@ -10,8 +10,8 @@ import buildInstructions
 import make_idSVG
 #import Box
 from mazepuzzlebox.createbox.models import Box
-id = 37
-thickness=3.76
+id = 2411
+thickness=3.72
 try:
     box = Box.objects.get(pk=id)
 except:
