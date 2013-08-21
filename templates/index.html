@@ -57,7 +57,7 @@
             {% for story in news %}
                 <p class="news">{{ story.date }}</p>
 				<h3><a class="news" href="{{ story.url }}">{{ story.title }}</a></h3>
-                <p class="news">{{ story.summary }}</p><br>
+                <p class="news">{{ story.summary|safe }}</p><br>
             {% endfor %}
         {% endif %}
         <a href="http://www.mattvenn.net/tag/mazepuzzlebox/">View older stories >>></a>
