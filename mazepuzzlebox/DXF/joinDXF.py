@@ -11,7 +11,9 @@ def joinDXF(boxid):
     footerFile = open(staticdxfdir + "footer.dxf", "r")
     footer = footerFile.read()
 
-    FILES = [ "pieces.dxf" , "maze.dxf", "boxmaze.dxf", "id_numbers.dxf" ]
+#    FILES = [ "pieces.dxf", "maze.dxf", "boxmaze.dxf", "id_numbers.dxf" ]
+#this order works?!!!??!
+    FILES = [ "maze.dxf", "id_numbers.dxf", "pieces.dxf", "boxmaze.dxf" ]
     entities = ""
     for file in FILES:
         filename = dxfdir + file
