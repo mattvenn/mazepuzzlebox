@@ -17,7 +17,7 @@ import logging
 import DXF.drawMaze
 import DXF.make_id
 import DXF.make_pieces
-import DXF.joinDXF
+import DXF.ezjoinDXF
 import DXF.buildInstructions
 import DXF.drawInstructionsMaze 
 import RSS
@@ -80,7 +80,7 @@ def details(request, id):
         DXF.drawMaze.drawMaze( box.maze,box )
         DXF.make_pieces.make_pieces(float(thickness))
         DXF.make_id.make_id(box.id)
-        DXF.joinDXF.joinDXF(box.id)
+        DXF.ezjoinDXF.joinDXF(box.id)
 	#SVG
         DXF.drawInstructionsMaze.drawMaze( box.maze,box )
         DXF.buildInstructions.buildInstructions(box.id)
