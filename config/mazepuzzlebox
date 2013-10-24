@@ -1,0 +1,45 @@
+#
+#  www.mazepuzzlebox.co.uk
+#
+<VirtualHost 77.73.6.229>
+        ServerName  www.mazepuzzlebox.co.uk
+        ServerAlias mazepuzzlebox.co.uk
+
+        # Indexes + Directory Root.
+        DirectoryIndex /
+        DocumentRoot /home/mpb/mazepuzzlebox
+	
+#	Alias /media/admin/ /var/lib/python-support/python2.6/django/contrib/admin/media/
+
+  WSGIDaemonProcess mpb display-name=mpb user=mpb group=mpb processes=2 threads=15 python-path=/home/mpb/.virtualenvs/mpb/lib/python2.7/site-packages/:/home/mpb/mazepuzzlebox/mazepuzzlebox/ home=/home/mpb/mazepuzzlebox/mazepuzzlebox/
+  WSGIProcessGroup mpb
+  WSGIScriptAlias / /home/mpb/mazepuzzlebox/mazepuzzlebox/wsgi.py
+
+	Alias /external /home/mpb/mazepuzzlebox/external/
+	<Directory /home/mpb/mazepuzzlebox/external/>
+		SetHandler none
+		Order allow,deny
+		Allow from all
+	</Directory>
+
+	Alias /mazePNGs /home/mpb/mazepuzzlebox/mazePNGs/
+	<Directory /home/mpb/mazepuzzlebox/mazePNGs/>
+		SetHandler none
+		Order allow,deny
+		Allow from all
+	</Directory>
+
+	Alias /boxes /home/mpb/mazepuzzlebox/boxDXFs
+	<Directory /home/mpb/mazepuzzlebox/boxDXFs/>
+		AddType application/octet-stream .DXF 
+		SetHandler none
+		Order allow,deny
+		Allow from all
+	</Directory>
+
+
+        # Logfiles
+        ErrorLog  /home/mpb/mazepuzzlebox/logs/error.log
+        CustomLog /home/mpb/mazepuzzlebox/logs/access.log combined
+</VirtualHost>
+
