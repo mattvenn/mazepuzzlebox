@@ -10,15 +10,15 @@ PATTERNCOLOR = 3
 #update this when old mazes need to be put out of action
 DXFVERSION = 2
 
-LIVE = 0
+LIVE = 1
 if LIVE:
-    ROOT_DIR = "/var/www/mazepuzzlebox/"
+    ROOT_DIR = "/home/mpb/mazepuzzlebox/"
     ROOT_URLCONF = 'urls'
-    DEBUG = False
+    DEBUG = True
     ADMIN_MEDIA_PREFIX = '/media/admin/'
 else:
- #   ROOT_DIR = "/home/matthew/work/python/mazepuzzlebox/"
-    ROOT_DIR = "/Users/admin/Documents/Maze Puzzle Box/mazepuzzlebox/"
+    ROOT_DIR = "/home/matthew/work/python/mazepuzzlebox/"
+ #   ROOT_DIR = "/Users/admin/Documents/Maze Puzzle Box/mazepuzzlebox/"
     ROOT_URLCONF = 'mazepuzzlebox.urls'
     DEBUG = True
     ADMIN_MEDIA_PREFIX = '/media/'
@@ -30,6 +30,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+USE_TZ = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
@@ -95,6 +96,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
+# Python dotted path to the WSGI application used by Django's runserver.
+WSGI_APPLICATION = 'www.wsgi.application'
 
 TEMPLATE_DIRS = (
     ROOT_DIR + "templates"
