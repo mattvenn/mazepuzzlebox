@@ -12,9 +12,9 @@ http://www.instructables.com/id/maze-puzzle-box/
 
 # dependencies
 
-check requirements.pip for the basics
+check requirements.pip 
 
-python-rsvg
+##python-rsvg
 To get rsvg working I had to do this:
 http://tech.agilitynerd.com/adding-rsvg-to-a-virtualenv-created-with-no-s.html
 
