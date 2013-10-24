@@ -1,5 +1,5 @@
 # thanks to kellbot for info on the sdxf library: http://www.kellbot.com/sdxf-python-library-for-dxf/
-import sdxf
+import ezdxf
 import sys
 from django.conf import settings
 dxfdir=settings.ROOT_DIR + "mazepuzzlebox/DXF/processDXF/"
@@ -21,15 +21,15 @@ cutColor = settings.CUTCOLOR
 
 def drawRef():
     linePoints = [(-2,0),(2,0)]
-    d.append(sdxf.Line(points=linePoints,color=cutColor)) 
+    modelspace.add_line(linePoints,dxfattribs={'color': cutColor})
     linePoints = [(0,-2),(0,2)]
-    d.append(sdxf.Line(points=linePoints,color=cutColor))
+    modelspace.add_line(linePoints,dxfattribs={'color': cutColor})
 
 def drawHinge(x,y):
-    d.append(sdxf.Circle(center=(x+10,y+thickness * 4.5),radius=2-laserBurnGap,color=cutColor))
-    d.append(sdxf.Arc(center=(x+10,y+thickness * 7 - 10),radius=10,startAngle=0,endAngle=180,color=cutColor))
+    modelspace.add_circle((x+10,y+thickness * 4.5),2-laserBurnGap,dxfattribs={'color': cutColor})
+    modelspace.add_arc((x+10,y+thickness * 7 - 10),10,0,180,dxfattribs={'color':cutColor})
     linePoints = [(x+0,y+thickness * 7 - 10 ),(x+0,y-2*laserBurnGap),(x+20,y-2*laserBurnGap),(x+20,y+thickness * 7 - 10)]
-    d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor)) 
+    modelspace.add_polyline2d(linePoints,dxfattribs={'color': cutColor })
 
 def drawCatch(x,y):
     notchDepth = 3
@@ -39,32 +39,32 @@ def drawCatch(x,y):
     #finish
     (x+10-laserBurnGap,y+thickness + laserBurnGap ),(x+0,y+ thickness + laserBurnGap),
     ]
-    d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor,flag=1)) 
+    modelspace.add_polyline2d(linePoints,dxfattribs={'color': cutColor, 'flags' : 1 })
 
 #give x and y for top left corner of box
 def drawHingeSlot(x,y):
     linePoints = [(x+boxLength,y+10),(x+boxLength-20,y+10),(x+boxLength-20,y+10+thickness),(x+boxLength,y+10+thickness)]
-    d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor)) 
+    modelspace.add_polyline2d(linePoints,dxfattribs={'color': cutColor})
     linePoints = [(x+boxLength,y+boxWidth-10),(x+boxLength-20,y+boxWidth-10),(x+boxLength-20,y+boxWidth-10-thickness),(x+boxLength,y+boxWidth-10-thickness)]
-    d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor)) 
+    modelspace.add_polyline2d(linePoints,dxfattribs={'color': cutColor})
 
 #give x and y for top left corner of box
 #slightly narrower for a tight fit
 def drawHingeSlotLid(x,y):
     linePoints = [(x+boxLength,y+10+laserBurnGap),(x+boxLength-20,y+10+laserBurnGap),(x+boxLength-20,y+10+thickness-laserBurnGap),(x+boxLength,y+10+thickness-laserBurnGap)]
-    d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor)) 
+    modelspace.add_polyline2d(linePoints,dxfattribs={'color': cutColor})
     linePoints = [(x+boxLength,y+boxWidth-10-laserBurnGap),(x+boxLength-20,y+boxWidth-10-laserBurnGap),(x+boxLength-20,y+boxWidth-10-thickness+laserBurnGap),(x+boxLength,y+boxWidth-10-thickness+laserBurnGap)]
-    d.append(sdxf.LwPolyLine(points=linePoints,color=cutColor))
+    modelspace.add_polyline2d(linePoints,dxfattribs={'color': cutColor})
 
 def drawLidCatchSlot(x,y):
     linePoints = [(x+15-thickness/2+laserBurnGap,y+40),(x+15+thickness/2-laserBurnGap,y+40),(x+15+thickness/2-laserBurnGap,y+40+30),(x+15-thickness/2+laserBurnGap,y+40+30)]
-    #d.append(sdxf.Line(points=linePoints,color=cutColor)) 
-    d.append(sdxf.LwPolyLine(points=linePoints,flag=1,color=cutColor)) 
+    #modelspace.add_line(linePoints,dxfattribs={'color': cutColor})
+    modelspace.add_polyline2d(linePoints,dxfattribs={'color': cutColor, 'flags' : 1})
 
 def drawLowerLidCatchSlot(x,y):
     linePoints = [(x+15-thickness/2+laserBurnGap,y+40+10),(x+15+thickness/2-laserBurnGap,y+40+10),(x+15+thickness/2-laserBurnGap,y+40+20),(x+15-thickness/2+laserBurnGap,y+40+20)]
-    d.append(sdxf.LwPolyLine(points=linePoints,flag=1,color=cutColor)) 
-    #d.append(sdxf.Line(points=linePoints,color=cutColor)) 
+    modelspace.add_polyline2d(linePoints,dxfattribs={'color': cutColor, 'flags' : 1})
+    #modelspace.add_line(linePoints,dxfattribs={'color': cutColor})
 
 def frange(start, end=None, inc=None):
     "A range function, that does accept float increments..."
@@ -86,9 +86,9 @@ def frange(start, end=None, inc=None):
         L.append(next)
         
     return L
-
+"""
 def testHoleSize( t ):
-    global d,thickness
+    global modelspace,thickness
     thickness = t
     print "using thickness %f" % thickness
     d=sdxf.Drawing()
@@ -101,19 +101,21 @@ def testHoleSize( t ):
         drawLowerLidCatchSlot(startpoint,0)
 
     d.saveas(dxfdir+'pieces.dxf')
+"""
 
 def make_pieces( t ):
-    global d, thickness
+    global modelspace, thickness
     thickness = t
     print "using thickness %f" % thickness
-    d=sdxf.Drawing()
+    drawing = ezdxf.new(dxfversion='AC1024')
+    modelspace = drawing.modelspace()
     #drawRef()
     drawHinge(205,40)
     drawHinge(230,40)
     drawCatch(60,40)
     spacing = 5
     drawLidCatchSlot(0,0)
-    #drawLowerLidCatchSlot(boxLength*0,0)
+#    drawLowerLidCatchSlot(boxLength*0,0)
     for col in range(2):
         for row in range(4):
             if (row == 3 and col == 1):
@@ -122,4 +124,4 @@ def make_pieces( t ):
                 drawHingeSlotLid((boxLength+spacing)*col,(boxWidth+spacing)*row)
             else :
                 drawHingeSlot((boxLength+spacing)*col,(boxWidth+spacing)*row)
-    d.saveas(dxfdir+'pieces.dxf')
+    drawing.saveas(dxfdir+'pieces.dxf')

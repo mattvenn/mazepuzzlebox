@@ -1,6 +1,6 @@
 import json
 import simplejson as json
-import sdxf
+import ezdxf
 import math
 import sys
 from django.conf import settings
@@ -8,7 +8,7 @@ from django.conf import settings
 dxfdir=settings.ROOT_DIR + "mazepuzzlebox/DXF/processDXF/"
 passageWidth = 5
 linePoints = []
-d = None
+modelspace = None
 maze = None
 xCells = None
 yCells = None
@@ -48,8 +48,8 @@ class Cell():
 #functions for drawing
 def endShape():
     global drawColor,linePoints
-    #import pdb; pdb.set_trace()
-    d.append(sdxf.LwPolyLine(points=linePoints,flag=1,color=drawColor)) 
+#    import ipdb; ipdb.set_trace()
+    modelspace.add_polyline2d(linePoints, dxfattribs={'color': drawColor})
     linePoints = []
 
 def vertex(x,y):
@@ -120,9 +120,10 @@ def drawDXFMaze():
 ##main start
 #prep drawing
 def drawMaze( jstr,box ):
-    global transX,transY,d,drawColor,maze,xCells,yCells
+    global transX,transY,modelspace,drawColor,maze,xCells,yCells
     (xCells,yCells)=box.getDimensions()
-    d=sdxf.Drawing()
+    drawing = ezdxf.new(dxfversion='AC1024')
+    modelspace = drawing.modelspace()
 
     #import the maze
     matrix = json.loads( jstr )
@@ -136,4 +137,4 @@ def drawMaze( jstr,box ):
     transX = 185 #180
     transY = 300 #290
     drawDXFMaze()
-    d.saveas(dxfdir+'maze.dxf')
+    drawing.saveas(dxfdir+'maze.dxf')

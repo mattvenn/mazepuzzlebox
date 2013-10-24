@@ -1,4 +1,4 @@
-import sdxf
+import ezdxf
 import sys
 import math
 from django.conf import settings
@@ -29,60 +29,61 @@ def create_num(x,y,n):
     if n == 0:
         linePoints = [(0,0),(char_width,0),(char_width,char_height),(0,char_height),(0,0)]
         linePoints = shift(x,y,linePoints)
-        d.append(sdxf.LwPolyLine(points=linePoints,color=char_color))
+        modelspace.add_polyline2d(linePoints,dxfattribs={'color': char_color})
     if n == 1:
         linePoints = [(0,0),(char_width,0)]
         linePoints = shift(x,y,linePoints)
-        d.append(sdxf.LwPolyLine(points=linePoints,color=char_color))
+        modelspace.add_polyline2d(linePoints,dxfattribs={'color': char_color})
         linePoints = [(char_width/2,0),(char_width/2,char_height),(0,char_height)]
         linePoints = shift(x,y,linePoints)
-        d.append(sdxf.LwPolyLine(points=linePoints,color=char_color))
+        modelspace.add_polyline2d(linePoints,dxfattribs={'color': char_color})
     if n == 2:
         linePoints = [(0,char_height),(char_width,char_height),(char_width,char_height/2),(0,char_height/2),(0,0),(char_width,0)]
         linePoints = shift(x,y,linePoints)
-        d.append(sdxf.LwPolyLine(points=linePoints,color=char_color))
+        modelspace.add_polyline2d(linePoints,dxfattribs={'color': char_color})
     if n == 3:
         linePoints = [(0,char_height),(char_width,char_height),(char_width,0),(0,0)]
         linePoints = shift(x,y,linePoints)
-        d.append(sdxf.LwPolyLine(points=linePoints,color=char_color))
+        modelspace.add_polyline2d(linePoints,dxfattribs={'color': char_color})
         linePoints = [(0,char_height/2),(char_width,char_height/2)]
         linePoints = shift(x,y,linePoints)
-        d.append(sdxf.LwPolyLine(points=linePoints,color=char_color))
+        modelspace.add_polyline2d(linePoints,dxfattribs={'color': char_color})
     if n == 4:
         linePoints = [(0,char_height),(0,char_height/2),(char_width,char_height/2)]
         linePoints = shift(x,y,linePoints)
-        d.append(sdxf.LwPolyLine(points=linePoints,color=char_color))
+        modelspace.add_polyline2d(linePoints,dxfattribs={'color': char_color})
         linePoints = [(char_width,char_height),(char_width,0)]
         linePoints = shift(x,y,linePoints)
-        d.append(sdxf.LwPolyLine(points=linePoints,color=char_color))
+        modelspace.add_polyline2d(linePoints,dxfattribs={'color': char_color})
     if n == 5:
         linePoints = [(char_width,char_height),(0,char_height),(0,char_height/2),(char_width,char_height/2),(char_width,0),(0,0)]
         linePoints = shift(x,y,linePoints)
-        d.append(sdxf.LwPolyLine(points=linePoints,color=char_color))
+        modelspace.add_polyline2d(linePoints,dxfattribs={'color': char_color})
     if n == 6:
         linePoints = [(0,char_height),(0,0),(char_width,0),(char_width,char_height/2),(0,char_height/2)]
         linePoints = shift(x,y,linePoints)
-        d.append(sdxf.LwPolyLine(points=linePoints,color=char_color))
+        modelspace.add_polyline2d(linePoints,dxfattribs={'color': char_color})
     if n == 7:
         linePoints = [(0,char_height),(char_width,char_height),(char_width,0)]
         linePoints = shift(x,y,linePoints)
-        d.append(sdxf.LwPolyLine(points=linePoints,color=char_color))
+        modelspace.add_polyline2d(linePoints,dxfattribs={'color': char_color})
     if n == 8:
         linePoints = [(0,0),(char_width,0),(char_width,char_height),(0,char_height),(0,0)]
         linePoints = shift(x,y,linePoints)
-        d.append(sdxf.LwPolyLine(points=linePoints,color=char_color))
+        modelspace.add_polyline2d(linePoints,dxfattribs={'color': char_color})
         linePoints = [(0,char_height/2),(char_width,char_height/2)]
         linePoints = shift(x,y,linePoints)
-        d.append(sdxf.LwPolyLine(points=linePoints,color=char_color))
+        modelspace.add_polyline2d(linePoints,dxfattribs={'color': char_color})
     if n == 9:
         linePoints = [(char_width,0),(char_width,char_height),(0,char_height),(0,char_height/2),(char_width,char_height/2)]
         linePoints = shift(x,y,linePoints)
-        d.append(sdxf.LwPolyLine(points=linePoints,color=char_color))
+        modelspace.add_polyline2d(linePoints,dxfattribs={'color': char_color})
 
 #do it
 def make_id( id ):
-    global d
-    d=sdxf.Drawing()
+    global modelspace 
+    drawing = ezdxf.new(dxfversion='AC1024')
+    modelspace = drawing.modelspace()
     print "using id %d" % id
     id_str = str(id)
     for i in range( len( id_str )):
@@ -90,5 +91,5 @@ def make_id( id ):
         x = i * char_width + char_spacing * i
         create_num( x, 0, int(id_str[i]) )
 
-    d.saveas(dxfdir+'id_numbers.dxf')
+    drawing.saveas(dxfdir+'id_numbers.dxf')
         
