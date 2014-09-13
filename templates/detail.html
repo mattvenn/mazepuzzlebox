@@ -22,13 +22,10 @@
     </table>
     </div>
 {% endif %}
-<div id="maze-text"><h2>Nice one!</h2><p>Now you've created your own maze, you can either buy the box or build one yourself.</p><br><p>To build one yourself, generate the DXF plans and follow the instructions...</div>
+<div id="maze-text"><h2>Nice one!</h2><p>Now you've created your own maze, you can build one yourself by generating the DXF plans and follow the instructions...</div>
 {% if version == box.version %}
 </div><!--END CONTENT-->
 <div id="details-text" class="clearfix">
-	<h2>Buy the complete box...</h2><span>{% include "paypal_built.html" %}</span>
-<hr>
-<h2>...or cut the parts yourself</h2>
 <p>To generate the plans for this box, enter your material thickness in mm:</p>
 <p><form action="/{{ box.id }}" method="post">
 {% csrf_token %}
