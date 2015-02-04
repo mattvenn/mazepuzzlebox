@@ -97,7 +97,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'www.wsgi.application'
+WSGI_APPLICATION = 'mazepuzzlebox.wsgi.application'
 
 TEMPLATE_DIRS = (
     ROOT_DIR + "templates"
