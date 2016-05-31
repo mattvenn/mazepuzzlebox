@@ -14,8 +14,10 @@ http://www.instructables.com/id/maze-puzzle-box/
 
 check requirements.pip 
 
-##python-rsvg
-To get rsvg working I had to do this:
+##python-rsvg and pycairo
+
+Install with apt-get python-cairo python-rsvg
+Then symlink from virtualenv directory like this:
 http://tech.agilitynerd.com/adding-rsvg-to-a-virtualenv-created-with-no-s.html
 
 # box todo
