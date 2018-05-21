@@ -41,7 +41,7 @@ def index(request):
         boxes = paginator.page(paginator.num_pages)
 
     #news
-    latest_news = RSS.getLatestNews()
+    latest_news = [] #RSS.getLatestNews()
 
     #testimonials
     testimonial = Testimonial.objects.order_by('?')[0]
