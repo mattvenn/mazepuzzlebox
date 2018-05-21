@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source /home/mpb/.virtualenvs/mpb/bin/activate
+source /srv/users/mazepuzzle/mpb-venv/bin/activate
 
-cd /home/mpb/mazepuzzlebox/mazepuzzlebox
+cd /srv/users/mazepuzzle/mazepuzzlebox/mazepuzzlebox
 exec gunicorn wsgi:application -b localhost:8001

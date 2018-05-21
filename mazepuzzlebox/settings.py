@@ -12,7 +12,7 @@ DXFVERSION = 2
 
 LIVE = 1
 if LIVE:
-    ROOT_DIR = "/home/mpb/mazepuzzlebox/"
+    ROOT_DIR = "/srv/users/mazepuzzle/mazepuzzlebox/"
     ROOT_URLCONF = 'urls'
     DEBUG = True
     ADMIN_MEDIA_PREFIX = '/media/admin/'
